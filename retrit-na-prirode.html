@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ретрит на природе — Живой Лес | Волга, Ярославль</title>
+<meta name="description" content="Ретрит на берегу Волги. 3–5 дней без телефонов, с медитациями, тренингами и живым общением. Ярославская область, Тутаевский район.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bark:#1E1209;
+  --moss:#2E3D22;
+  --earth:#5C3D1E;
+  --stone:#8A7968;
+  --mist:#C4B9A8;
+  --cream:#F5F0E8;
+  --gold:#B8923A;
+  --gold-light:#D4AA55;
+  --water:#3A6070;
+  --white:#FDFBF7;
+  --ff-serif:'Cormorant Garamond',Georgia,serif;
+  --ff-sans:'Jost',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-sans);background:var(--cream);color:var(--bark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── MENU OVERLAY ── */
+.menu-overlay{
+  position:fixed;inset:0;z-index:200;
+  background:var(--bark);
+  display:flex;flex-direction:column;
+  padding:0 48px 60px;
+  transform:translateX(-100%);
+  transition:transform 0.55s cubic-bezier(0.77,0,0.18,1);
+  overflow-y:auto;
+}
+.menu-overlay.open{transform:translateX(0)}
+.menu-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:24px 0 48px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  margin-bottom:48px;
+}
+.menu-logo{font-family:var(--ff-serif);font-size:22px;color:var(--cream);text-decoration:none;letter-spacing:1px}
+.menu-logo span{color:var(--gold)}
+.menu-close{background:none;border:none;cursor:pointer;padding:8px;display:flex;align-items:center;justify-content:center}
+.menu-nav{flex:1}
+.menu-nav a{
+  display:block;
+  font-family:var(--ff-serif);
+  font-size:clamp(28px,6vw,48px);
+  font-weight:300;
+  color:rgba(245,240,232,0.5);
+  text-decoration:none;
+  padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  letter-spacing:0.5px;
+  transition:color 0.2s;
+}
+.menu-nav a:hover{color:var(--gold)}
+.menu-nav a.active{color:var(--cream)}
+.menu-meta{
+  margin-top:40px;
+  font-size:12px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(196,185,168,0.4);
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:20px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all 0.4s;
+}
+nav.scrolled{
+  background:rgba(20,10,5,0.92);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  padding:14px 48px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-logo{font-family:var(--ff-serif);font-size:20px;color:var(--cream);text-decoration:none;letter-spacing:1px}
+.nav-logo span{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:32px}
+.nav-cta{
+  font-family:var(--ff-sans);font-size:11px;font-weight:500;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(184,146,58,0.5);
+  padding:10px 24px;text-decoration:none;
+  transition:all 0.2s;
+}
+.nav-cta:hover{background:var(--gold);color:var(--bark)}
+.burger{
+  background:none;border:none;cursor:pointer;
+  display:flex;flex-direction:column;gap:5px;padding:4px;
+}
+.burger span{
+  display:block;width:24px;height:1px;
+  background:var(--cream);transition:all 0.3s;
+}
+
+/* ── HERO ── */
+.hero{
+  position:relative;min-height:100svh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  background:var(--bark);overflow:hidden;
+  padding:0 0 80px;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(170deg,#0d0800 0%,#1a1008 35%,#1e2a14 70%,#0e1a08 100%);
+}
+/* Forest silhouette via SVG */
+.hero-forest{
+  position:absolute;bottom:0;left:0;right:0;
+  height:55%;opacity:0.22;
+}
+.hero-glow{
+  position:absolute;
+  width:600px;height:600px;
+  top:-100px;right:-100px;
+  background:radial-gradient(circle,rgba(46,61,34,0.6) 0%,transparent 70%);
+}
+.hero-line{
+  position:absolute;top:0;bottom:0;
+  left:48px;
+  width:1px;
+  background:linear-gradient(to bottom,transparent,rgba(184,146,58,0.3) 30%,rgba(184,146,58,0.3) 70%,transparent);
+}
+.hero-content{
+  position:relative;z-index:2;
+  padding:0 48px 0 80px;
+  max-width:900px;
+}
+.hero-label{
+  display:inline-flex;align-items:center;gap:16px;
+  font-size:11px;font-weight:400;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:40px;
+}
+.hero-label::before{content:'';display:block;width:32px;height:1px;background:var(--gold)}
+.hero h1{
+  font-family:var(--ff-serif);
+  font-size:clamp(52px,8vw,100px);
+  font-weight:300;line-height:1.04;
+  color:var(--cream);margin-bottom:32px;
+}
+.hero h1 em{font-style:italic;color:var(--gold-light)}
+.hero-sub{
+  font-size:16px;font-weight:300;line-height:1.8;
+  color:rgba(196,185,168,0.8);max-width:480px;margin-bottom:52px;
+}
+.hero-actions{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+.btn-primary{
+  display:inline-block;background:var(--gold);color:var(--bark);
+  font-family:var(--ff-sans);font-size:11px;font-weight:500;
+  letter-spacing:3px;text-transform:uppercase;text-decoration:none;
+  padding:18px 44px;transition:all 0.25s;
+}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-ghost{
+  font-family:var(--ff-sans);font-size:12px;font-weight:400;
+  letter-spacing:2px;text-transform:uppercase;
+  color:rgba(196,185,168,0.6);text-decoration:none;
+  display:flex;align-items:center;gap:12px;
+  transition:color 0.2s;
+}
+.btn-ghost:hover{color:var(--cream)}
+.btn-ghost svg{transition:transform 0.2s}
+.btn-ghost:hover svg{transform:translateX(4px)}
+.hero-corner{
+  position:absolute;bottom:48px;right:48px;z-index:2;
+  text-align:right;
+}
+.hero-corner p{
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(196,185,168,0.35);line-height:2;
+}
+
+/* ── SECTIONS ── */
+.section{padding:100px 80px}
+.section-inner{max-width:1200px;margin:0 auto}
+
+.label{
+  display:inline-flex;align-items:center;gap:16px;
+  font-size:10px;font-weight:500;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;
+}
+.label::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+
+h2{
+  font-family:var(--ff-serif);
+  font-size:clamp(36px,4vw,60px);
+  font-weight:300;line-height:1.12;
+  color:var(--bark);margin-bottom:20px;
+}
+h2 em{font-style:italic;color:var(--earth)}
+.lead{font-size:16px;font-weight:300;line-height:1.85;color:var(--stone)}
+.rule-sep{width:40px;height:1px;background:var(--gold);margin:28px 0}
+
+/* ── WHY ── */
+.why{background:var(--white);padding:0}
+.why-grid{display:grid;grid-template-columns:1fr 1fr}
+.why-left{padding:100px 80px;display:flex;flex-direction:column;justify-content:center}
+.why-right{
+  background:var(--moss);position:relative;min-height:640px;
+  overflow:hidden;display:flex;align-items:flex-end;padding:60px;
+}
+.why-right-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,26,8,0.2) 0%,rgba(14,26,8,0.75) 100%);
+}
+.why-quote{
+  position:relative;z-index:2;
+  font-family:var(--ff-serif);font-size:26px;font-weight:300;
+  font-style:italic;color:var(--cream);line-height:1.5;
+  padding-left:28px;
+  border-left:1px solid var(--gold);
+}
+.why-quote cite{
+  display:block;font-style:normal;font-family:var(--ff-sans);
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-top:20px;
+}
+.why-items{margin-top:48px;display:flex;flex-direction:column;gap:0}
+.why-item{
+  display:grid;grid-template-columns:48px 1fr;gap:0 20px;
+  padding:24px 0;border-top:1px solid rgba(92,61,30,0.12);
+  align-items:start;
+}
+.why-item:last-child{border-bottom:1px solid rgba(92,61,30,0.12)}
+.why-n{
+  font-family:var(--ff-serif);font-size:13px;font-style:italic;
+  color:var(--gold);padding-top:2px;
+}
+.why-item strong{display:block;font-size:15px;font-weight:500;color:var(--bark);margin-bottom:6px}
+.why-item p{font-size:13px;font-weight:300;color:var(--stone);line-height:1.7}
+
+/* SVG Icons */
+.icon{display:block;flex-shrink:0}
+
+/* ── PROGRAM ── */
+.program-section{background:var(--cream)}
+.prog-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:64px}
+.program-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid rgba(138,121,104,0.2);
+}
+.prog-card{
+  padding:36px 28px;
+  border-right:1px solid rgba(138,121,104,0.2);
+  border-bottom:1px solid rgba(138,121,104,0.2);
+  transition:background 0.3s;
+}
+.prog-card:nth-child(4n){border-right:none}
+.prog-card:nth-last-child(-n+4){border-bottom:none}
+.prog-card:hover{background:rgba(184,146,58,0.04)}
+.prog-icon{width:36px;height:36px;margin-bottom:20px;color:var(--gold)}
+.prog-card h3{
+  font-family:var(--ff-serif);font-size:18px;font-weight:400;
+  color:var(--bark);margin-bottom:10px;line-height:1.3;
+}
+.prog-card p{font-size:13px;font-weight:300;color:var(--stone);line-height:1.7}
+
+/* ── INCLUDED ── */
+.included-section{background:var(--white)}
+.inc-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:100px;align-items:center}
+.inc-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  border:1px solid rgba(138,121,104,0.18);
+}
+.inc-cell{
+  padding:28px 24px;
+  border-right:1px solid rgba(138,121,104,0.18);
+  border-bottom:1px solid rgba(138,121,104,0.18);
+  display:flex;align-items:flex-start;gap:16px;
+}
+.inc-cell:nth-child(2n){border-right:none}
+.inc-cell:nth-last-child(-n+2){border-bottom:none}
+.inc-cell svg{flex-shrink:0;margin-top:2px;color:var(--gold)}
+.inc-cell strong{display:block;font-size:13px;font-weight:500;color:var(--bark);margin-bottom:4px}
+.inc-cell p{font-size:12px;font-weight:300;color:var(--stone);line-height:1.5}
+
+/* ── RULES ── */
+.rules-section{background:var(--moss);padding:100px 80px}
+.rules-inner{max-width:1200px;margin:0 auto}
+.rules-top{margin-bottom:72px}
+.rules-top h2{color:var(--cream)}
+.rules-top h2 em{color:var(--gold-light)}
+.rules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.08)}
+.rule-card{background:var(--moss);padding:48px 40px}
+.rule-card svg{color:var(--gold);margin-bottom:24px}
+.rule-card h3{
+  font-family:var(--ff-serif);font-size:24px;font-weight:300;
+  color:var(--cream);margin-bottom:14px;
+}
+.rule-card p{font-size:14px;font-weight:300;color:rgba(196,185,168,0.7);line-height:1.8}
+
+/* ── PRICING ── */
+.pricing-section{background:var(--bark);padding:100px 80px;text-align:center}
+.pricing-section .label{justify-content:center;color:var(--gold)}
+.pricing-section .label::before{display:none}
+.pricing-section h2{color:var(--cream)}
+.pricing-section h2 em{color:var(--gold-light)}
+.pricing-section .lead{color:rgba(196,185,168,0.6);margin:0 auto 64px;max-width:460px}
+.cards{display:flex;justify-content:center;gap:2px;flex-wrap:wrap;max-width:860px;margin:0 auto 48px}
+.price-card{
+  flex:1;min-width:280px;max-width:360px;
+  padding:52px 44px;
+  border:1px solid rgba(255,255,255,0.07);
+  text-align:left;position:relative;
+  background:rgba(255,255,255,0.03);
+  transition:background 0.3s;
+}
+.price-card:hover{background:rgba(255,255,255,0.06)}
+.price-card.featured{
+  border-color:rgba(184,146,58,0.4);
+  background:rgba(184,146,58,0.06);
+}
+.feat-tag{
+  position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:var(--bark);
+  font-size:9px;font-weight:500;letter-spacing:4px;text-transform:uppercase;
+  padding:6px 20px;white-space:nowrap;
+}
+.price-dur{
+  font-size:11px;font-weight:400;letter-spacing:4px;text-transform:uppercase;
+  color:var(--stone);margin-bottom:16px;display:block;
+}
+.price-num{
+  font-family:var(--ff-serif);font-size:56px;font-weight:300;
+  color:var(--cream);line-height:1;margin-bottom:8px;
+}
+.price-num sup{font-size:22px;vertical-align:super}
+.price-desc{font-size:13px;color:var(--stone);margin-bottom:32px;line-height:1.6}
+.price-feats{list-style:none;margin-bottom:40px;display:flex;flex-direction:column;gap:12px}
+.price-feats li{
+  font-size:13px;font-weight:300;color:rgba(196,185,168,0.8);
+  display:flex;align-items:center;gap:12px;
+}
+.price-feats li::before{
+  content:'';display:block;width:20px;height:1px;
+  background:var(--gold);flex-shrink:0;
+}
+.btn-card{
+  display:block;width:100%;padding:14px;text-align:center;
+  font-family:var(--ff-sans);font-size:10px;font-weight:500;
+  letter-spacing:4px;text-transform:uppercase;text-decoration:none;
+  border:1px solid rgba(196,185,168,0.25);color:rgba(196,185,168,0.7);
+  transition:all 0.25s;
+}
+.btn-card:hover{border-color:var(--gold);color:var(--gold)}
+.price-card.featured .btn-card{
+  background:var(--gold);border-color:var(--gold);color:var(--bark);
+}
+.price-card.featured .btn-card:hover{background:var(--gold-light)}
+.pricing-note{
+  font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(196,185,168,0.3);
+}
+.pricing-note strong{color:var(--gold)}
+
+/* ── LOCATION ── */
+.location-section{background:var(--cream)}
+.loc-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:100px;align-items:center}
+.loc-visual{
+  background:var(--bark);height:460px;
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.loc-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,#1e2a14 0%,#0d1a08 50%,#1a0e06 100%);
+}
+.loc-center{position:relative;z-index:2;text-align:center}
+.loc-pin-ring{
+  width:64px;height:64px;border:1px solid rgba(184,146,58,0.4);
+  border-radius:50%;margin:0 auto 24px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;animation:pulse 3s ease-in-out infinite;
+}
+.loc-pin-ring::after{
+  content:'';position:absolute;inset:-12px;
+  border:1px solid rgba(184,146,58,0.15);border-radius:50%;
+  animation:pulse 3s ease-in-out infinite 0.8s;
+}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:0.6}}
+.loc-center strong{
+  display:block;font-family:var(--ff-serif);font-size:28px;
+  color:var(--cream);margin-bottom:8px;
+}
+.loc-center p{
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--mist);
+}
+.loc-facts{display:flex;flex-direction:column;gap:0}
+.loc-fact{
+  display:grid;grid-template-columns:44px 1fr;gap:0 18px;
+  padding:24px 0;border-bottom:1px solid rgba(92,61,30,0.12);
+  align-items:start;
+}
+.loc-fact:first-child{border-top:1px solid rgba(92,61,30,0.12)}
+.loc-fact svg{color:var(--gold);margin-top:2px}
+.loc-fact strong{display:block;font-size:14px;font-weight:500;color:var(--bark);margin-bottom:5px}
+.loc-fact p{font-size:13px;font-weight:300;color:var(--stone);line-height:1.6}
+
+/* ── FAQ ── */
+.faq-section{background:var(--white);padding:100px 80px}
+.faq-inner{max-width:800px;margin:0 auto}
+.faq-list{margin-top:56px}
+.faq-item{border-top:1px solid rgba(138,121,104,0.2)}
+.faq-item:last-child{border-bottom:1px solid rgba(138,121,104,0.2)}
+.faq-q{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:20px;padding:24px 0;cursor:pointer;user-select:none;
+}
+.faq-q span{
+  font-family:var(--ff-serif);font-size:20px;font-weight:300;
+  color:var(--bark);line-height:1.3;
+}
+.faq-toggle{
+  width:32px;height:32px;flex-shrink:0;
+  border:1px solid rgba(138,121,104,0.3);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform 0.35s,border-color 0.2s;
+}
+.faq-item.open .faq-toggle{transform:rotate(45deg);border-color:var(--gold)}
+.faq-a{
+  font-size:14px;font-weight:300;color:var(--stone);line-height:1.85;
+  max-height:0;overflow:hidden;transition:max-height 0.45s ease,padding 0.3s;
+}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:24px}
+
+/* ── CTA FINAL ── */
+.cta-final{
+  background:var(--bark);padding:140px 80px;
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(46,61,34,0.5) 0%,transparent 70%);
+}
+.cta-final>*{position:relative;z-index:2}
+.cta-final h2{color:var(--cream)}
+.cta-final h2 em{color:var(--gold-light)}
+.cta-final .lead{color:rgba(196,185,168,0.65);max-width:500px;margin:0 auto 48px}
+.cta-date-pill{
+  display:inline-block;
+  font-size:10px;font-weight:500;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(184,146,58,0.3);
+  padding:12px 28px;margin-bottom:40px;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:#120a04;padding:40px 80px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:16px;
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+.foot-logo{font-family:var(--ff-serif);font-size:18px;color:var(--cream);text-decoration:none}
+.foot-logo span{color:var(--gold)}
+footer p{font-size:11px;color:rgba(196,185,168,0.3);letter-spacing:1px}
+footer a{font-size:11px;color:var(--gold);text-decoration:none;letter-spacing:2px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .program-grid{grid-template-columns:repeat(2,1fr)}
+  .prog-card:nth-child(4n){border-right:1px solid rgba(138,121,104,0.2)}
+  .prog-card:nth-child(2n){border-right:none}
+  .prog-card:nth-last-child(-n+4){border-bottom:1px solid rgba(138,121,104,0.2)}
+  .prog-card:nth-last-child(-n+2){border-bottom:none}
+}
+@media(max-width:900px){
+  nav{padding:16px 24px}
+  nav.scrolled{padding:12px 24px}
+  .nav-cta{display:none}
+  .hero-content{padding:0 24px 0 40px}
+  .hero-line{left:24px}
+  .hero-corner{right:24px;bottom:24px}
+  .section{padding:70px 24px}
+  .why-grid{grid-template-columns:1fr}
+  .why-left{padding:70px 24px}
+  .why-right{min-height:280px;padding:40px 24px}
+  .prog-header{grid-template-columns:1fr;gap:24px}
+  .inc-layout{grid-template-columns:1fr;gap:48px}
+  .rules-grid{grid-template-columns:1fr}
+  .rule-card{padding:36px 24px}
+  .rules-section{padding:70px 24px}
+  .pricing-section{padding:70px 24px}
+  .loc-layout{grid-template-columns:1fr;gap:48px}
+  .loc-visual{height:300px}
+  .location-section .section{padding:70px 24px}
+  .faq-section{padding:70px 24px}
+  .cta-final{padding:90px 24px}
+  footer{padding:30px 24px;flex-direction:column;align-items:flex-start;gap:12px}
+  .menu-overlay{padding:0 24px 48px}
+  .menu-top{padding:18px 0 36px}
+}
+@media(max-width:600px){
+  .hero{padding-bottom:48px}
+  .program-grid{grid-template-columns:1fr}
+  .prog-card:nth-child(2n){border-right:1px solid rgba(138,121,104,0.2)}
+  .prog-card:nth-last-child(-n+2){border-bottom:1px solid rgba(138,121,104,0.2)}
+  .prog-card:last-child{border-bottom:none}
+  .inc-grid{grid-template-columns:1fr}
+  .inc-cell:nth-child(2n){border-right:none}
+  .inc-cell:nth-last-child(-n+2){border-bottom:1px solid rgba(138,121,104,0.18)}
+  .inc-cell:last-child{border-bottom:none}
+  .cards{flex-direction:column;align-items:center}
+  .price-card{max-width:100%;width:100%}
+  .hero-actions{flex-direction:column;align-items:flex-start;gap:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- MENU OVERLAY -->
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-top">
+    <a href="index.html" class="menu-logo">Живой<span>Лес</span></a>
+    <button class="menu-close" id="menuClose" aria-label="Закрыть">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(245,240,232,0.6)" stroke-width="1" stroke-linecap="round">
+        <line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/>
+      </svg>
+    </button>
+  </div>
+  <nav class="menu-nav">
+    <a href="retrit-na-prirode.html" class="active">Ретрит на природе</a>
+    <a href="perezagruzka-ot-goroda.html">Перезагрузка от города</a>
+    <a href="korporativnyy-vyyezd.html">Корпоративный выезд</a>
+    <a href="meditacii-na-prirode.html">Медитации на природе</a>
+    <a href="palatochnyy-lager-vzroslye.html">Поход для взрослых</a>
+    <a href="trening-v-lesu.html">Тренинги и рост</a>
+    <a href="leto-na-volge-2026.html">Лето на Волге 2026</a>
+    <a href="pamyatka.html">Памятка участника</a>
+  </nav>
+  <p class="menu-meta">Берег Волги · Ярославль · 2026</p>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Живой<span>Лес</span></a>
+  <div class="nav-right">
+    <a href="https://t.me/proztas" class="nav-cta">Записаться</a>
+    <button class="burger" id="burgerBtn" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-line"></div>
+
+  <!-- Forest SVG silhouette -->
+  <svg class="hero-forest" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 400 L0 280 L40 200 L80 280 L80 220 L130 120 L180 220 L180 180 L240 60 L300 180 L300 160 L360 20 L420 160 L420 140 L480 80 L540 140 L540 100 L600 30 L660 100 L660 80 L720 10 L780 80 L780 60 L840 40 L900 60 L900 100 L960 30 L1020 100 L1020 80 L1080 50 L1140 80 L1140 120 L1200 60 L1260 120 L1260 100 L1320 160 L1380 100 L1440 180 L1440 400 Z" fill="white"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-label">Ретрит на природе · Ярославль · Волга</div>
+    <h1>Встреча<br>с <em>собой</em> —<br>настоящая</h1>
+    <p class="hero-sub">5 дней на берегу Волги без телефонов, без спешки, без привычных ролей. Медитации, тренинги, костёр.</p>
+    <div class="hero-actions">
+      <a href="https://t.me/proztas" class="btn-primary">Записаться на ретрит</a>
+      <a href="#program" class="btn-ghost">
+        Программа
+        <svg width="20" height="10" viewBox="0 0 20 10" fill="none" stroke="currentColor" stroke-width="1"><line x1="0" y1="5" x2="18" y2="5"/><polyline points="14,1 18,5 14,9"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-corner">
+    <p>15 июня 2026</p>
+    <p>Группа 15 человек</p>
+  </div>
+</section>
+
+<!-- WHY -->
+<div class="why" id="why">
+  <div class="why-grid">
+    <div class="why-left">
+      <span class="label">Зачем ретрит</span>
+      <h2>Пять дней,<br>которые <em>меняют</em></h2>
+      <div class="rule-sep"></div>
+      <p class="lead">В городе мы привыкли быть «занятыми». Ретрит — это пространство, где можно перестать изображать нужного человека и просто побыть собой.</p>
+      <ul class="why-items">
+        <li class="why-item">
+          <span class="why-n">I</span>
+          <div><strong>Выход из автопилота</strong><p>Без уведомлений и рабочих чатов — мозг начинает думать по-другому уже на второй день.</p></div>
+        </li>
+        <li class="why-item">
+          <span class="why-n">II</span>
+          <div><strong>Живое общение</strong><p>Люди, с которыми ты делил костёр и дождь, становятся настоящими — не соцсетевыми контактами.</p></div>
+        </li>
+        <li class="why-item">
+          <span class="why-n">III</span>
+          <div><strong>Практики, которые работают</strong><p>Три медитации в день, тренинги, день молчания — не теория, а реальный опыт.</p></div>
+        </li>
+        <li class="why-item">
+          <span class="why-n">IV</span>
+          <div><strong>Природа как терапия</strong><p>Берег Волги, лес, костёр — тело и нервная система расслабляются сами, без усилий.</p></div>
+        </li>
+      </ul>
+    </div>
+    <div class="why-right">
+      <div class="why-right-bg"></div>
+      <svg style="position:absolute;top:0;right:0;width:60%;height:100%;opacity:0.08" viewBox="0 0 300 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="150" y1="640" x2="150" y2="180" stroke="white" stroke-width="2"/>
+        <line x1="150" y1="320" x2="60" y2="180" stroke="white" stroke-width="1.5"/>
+        <line x1="150" y1="280" x2="220" y2="130" stroke="white" stroke-width="1.5"/>
+        <line x1="150" y1="240" x2="70" y2="80" stroke="white" stroke-width="1"/>
+        <line x1="150" y1="220" x2="200" y2="30" stroke="white" stroke-width="1"/>
+        <line x1="150" y1="260" x2="240" y2="200" stroke="white" stroke-width="1"/>
+        <line x1="150" y1="300" x2="30" y2="230" stroke="white" stroke-width="1"/>
+      </svg>
+      <blockquote class="why-quote">
+        «5 дней без телефона — и узнаёшь о себе больше, чем за последний год»
+        <cite>— из отзывов участников</cite>
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAM -->
+<div class="section program-section" id="program">
+  <div class="section-inner">
+    <div class="prog-header">
+      <div>
+        <span class="label">Программа</span>
+        <h2>Каждый день —<br><em>насыщенный</em></h2>
+      </div>
+      <p class="lead">Структурированный ритм создаёт ощущение безопасности. Никакой суеты — только то, что важно.</p>
+    </div>
+    <div class="program-grid">
+
+      <div class="prog-card">
+        <svg class="prog-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <circle cx="18" cy="18" r="14"/>
+          <path d="M18 10 C14 12 12 15 12 18 C12 22 15 25 18 26 C21 25 24 22 24 18 C24 15 22 12 18 10Z"/>
+          <line x1="18" y1="4" x2="18" y2="8"/>
+        </svg>
+        <h3>Медитации — 3 раза в день</h3>
+        <p>Утром, в обед и вечером. По 20 минут. Ведёт участник из группы — каждый проходит через роль ведущего.</p>
+      </div>
+
+      <div class="prog-card">
+        <svg class="prog-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <path d="M18 6 L18 30"/>
+          <path d="M10 12 L18 6 L26 12"/>
+          <path d="M8 20 Q18 14 28 20"/>
+          <path d="M6 28 Q18 20 30 28"/>
+        </svg>
+        <h3>Утренняя зарядка</h3>
+        <p>15 минут разминки и кардио на свежем воздухе. Обязательно для всех — тело тоже должно работать.</p>
+      </div>
+
+      <div class="prog-card">
+        <svg class="prog-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <circle cx="18" cy="10" r="5"/>
+          <path d="M8 30 C8 22 28 22 28 30"/>
+          <path d="M18 15 L18 23"/>
+          <path d="M14 27 L18 23 L22 27"/>
+        </svg>
+        <h3>Тренинг «Горячий стул»</h3>
+        <p>Честная обратная связь от группы. Узнаёшь, как тебя видят другие — и что в тебе ценят.</p>
+      </div>
+
+      <div class="prog-card">
+        <svg class="prog-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <path d="M6 28 L14 20 L20 26 L30 8"/>
+          <path d="M22 8 L30 8 L30 16"/>
+        </svg>
+        <h3>«Сбитый лётчик» — ночной</h3>
+        <p>Командный тренинг на выживание. Принятие решений под давлением. Настоящая проверка лидерства.</p>
+      </div>
+
+      <div class="prog-card">
+        <svg class="prog-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <circle cx="18" cy="18" r="13"/>
+          <path d="M14 14 L22 14"/>
+          <path d="M14 18 L22 18"/>
+          <path d="M14 22 L19 22"/>
+        </svg>
+        <h3>День молчания</h3>
+        <p>Один полный день без слов — только жесты и записки. Услышь себя, когда снаружи тишина.</p>
+      </div>
+
+      <div class="prog-card">
+        <svg class="prog-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <path d="M18 8 C14 12 10 16 10 20 C10 25 13 28 18 28 C23 28 26 25 26 20 C26 16 22 12 18 8Z"/>
+          <path d="M18 28 L18 32"/>
+          <path d="M12 30 L24 30"/>
+        </svg>
+        <h3>Итоги у костра</h3>
+        <p>Каждый вечер — каждый говорит, что получил сегодня. Рефлексия без осуждения, в круге равных.</p>
+      </div>
+
+      <div class="prog-card">
+        <svg class="prog-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <rect x="6" y="8" width="24" height="20" rx="1"/>
+          <path d="M6 13 L30 13"/>
+          <path d="M12 8 L12 4"/>
+          <path d="M24 8 L24 4"/>
+          <path d="M10 19 L18 19"/>
+          <path d="M10 23 L22 23"/>
+        </svg>
+        <h3>Чтение у костра</h3>
+        <p>Читаем вслух, делимся что откликнулось. Живые слова вместо ленты новостей.</p>
+      </div>
+
+      <div class="prog-card">
+        <svg class="prog-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <path d="M4 26 Q10 14 18 18 Q26 22 32 10"/>
+          <path d="M4 10 L4 30 L32 30"/>
+        </svg>
+        <h3>Волейбол и купание</h3>
+        <p>Волга в двух шагах. Ежедневные заплывы и командные игры — радость движения в чистой воде.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- INCLUDED -->
+<div class="section included-section" id="included">
+  <div class="section-inner">
+    <div class="inc-layout">
+      <div>
+        <span class="label">Что включено</span>
+        <h2>С нас —<br><em>забота</em> обо всём</h2>
+        <div class="rule-sep"></div>
+        <p class="lead">Приезжай с рюкзаком и открытым сердцем. Всё снаряжение, питание и программа уже готовы.</p>
+        <br><br>
+        <a href="https://t.me/proztas" class="btn-primary" style="display:inline-block">Уточнить детали</a>
+      </div>
+      <div class="inc-grid">
+        <div class="inc-cell">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M2 18 L2 10 L11 4 L20 10 L20 18 Z"/><path d="M8 18 L8 13 L14 13 L14 18"/></svg>
+          <div><strong>Двухкомнатные палатки</strong><p>Просторные, защита от дождя и ветра</p></div>
+        </div>
+        <div class="inc-cell">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M2 14 Q2 8 11 8 Q20 8 20 14 L20 18 L2 18 Z"/><path d="M2 16 L20 16"/></svg>
+          <div><strong>Спальники</strong><p>Тёплые, для ночей у Волги</p></div>
+        </div>
+        <div class="inc-cell">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M7 18 C7 14 4 12 4 8 Q4 4 11 4 Q18 4 18 8 C18 12 15 14 15 18 Z"/><line x1="7" y1="15" x2="15" y2="15"/></svg>
+          <div><strong>Горячее питание</strong><p>3 раза в день, готовим на костре</p></div>
+        </div>
+        <div class="inc-cell">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><circle cx="11" cy="11" r="4"/><path d="M11 2 L11 4"/><path d="M11 18 L11 20"/><path d="M2 11 L4 11"/><path d="M18 11 L20 11"/></svg>
+          <div><strong>Фонари и оснащение</strong><p>Всё необходимое для лагеря</p></div>
+        </div>
+        <div class="inc-cell">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><rect x="3" y="12" width="16" height="6" rx="1"/><path d="M3 14 Q11 8 19 14"/></svg>
+          <div><strong>Коврики для практик</strong><p>Для медитаций и утренних упражнений</p></div>
+        </div>
+        <div class="inc-cell">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M8 11 L10 13 L14 9"/></svg>
+          <div><strong>Защита от насекомых</strong><p>Репелленты и сетки — всё учтено</p></div>
+        </div>
+        <div class="inc-cell">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M4 18 C4 14 7 12 11 10 C15 12 18 14 18 18"/><path d="M8 18 L8 14 Q11 10 14 14 L14 18"/></svg>
+          <div><strong>Костёр и дрова</strong><p>Вечерние посиделки обеспечены</p></div>
+        </div>
+        <div class="inc-cell">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><circle cx="11" cy="8" r="3"/><path d="M5 20 C5 14 17 14 17 20"/><path d="M15 6 L17 8 L20 5"/></svg>
+          <div><strong>Все тренинги и практики</strong><p>Ведущие и программа включены</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RULES -->
+<div class="rules-section">
+  <div class="rules-inner">
+    <div class="rules-top">
+      <span class="label" style="color:var(--gold-light)">Правила</span>
+      <h2 style="color:var(--cream)">Три правила,<br><em>которые работают</em></h2>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-card">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <rect x="8" y="4" width="24" height="32" rx="3"/>
+          <circle cx="20" cy="28" r="2"/>
+          <line x1="14" y1="12" x2="26" y2="12"/>
+          <line x1="14" y1="17" x2="22" y2="17"/>
+          <line x1="28" y1="4" x2="32" y2="8"/>
+          <line x1="28" y1="8" x2="32" y2="4"/>
+        </svg>
+        <h3>Нет гаджетов</h3>
+        <p>Телефоны убираем на всё время ретрита. Мы здесь — чтобы быть здесь, а не в ленте.</p>
+      </div>
+      <div class="rule-card">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <path d="M12 34 C12 26 10 22 10 16 Q10 8 20 8 Q30 8 30 16 C30 22 28 26 28 34"/>
+          <line x1="12" y1="30" x2="28" y2="30"/>
+          <line x1="6" y1="6" x2="34" y2="34"/>
+        </svg>
+        <h3>Нет алкоголя</h3>
+        <p>Полный сухой закон. Все трансформации — только на трезвую голову.</p>
+      </div>
+      <div class="rule-card">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <circle cx="20" cy="20" r="14"/>
+          <path d="M14 16 Q20 12 26 16"/>
+          <path d="M14 24 Q20 28 26 24"/>
+          <line x1="20" y1="12" x2="20" y2="28"/>
+        </svg>
+        <h3>Нет агрессии</h3>
+        <p>Конфликты решаем через разговор. Уважение — основа безопасного пространства.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="pricing-section" id="pricing">
+  <span class="label">Стоимость</span>
+  <h2>Выберите <em>формат</em></h2>
+  <p class="lead">Всё снаряжение и питание включены в обоих форматах</p>
+  <div class="cards">
+    <div class="price-card">
+      <span class="price-dur">3 дня</span>
+      <div class="price-num"><sup>₽</sup>33 000</div>
+      <p class="price-desc">Короткий интенсив — попробовать формат</p>
+      <ul class="price-feats">
+        <li>Горячее питание</li>
+        <li>Всё снаряжение</li>
+        <li>Медитации и тренинги</li>
+        <li>Купание и волейбол</li>
+      </ul>
+      <a href="https://t.me/proztas" class="btn-card">Записаться</a>
+    </div>
+    <div class="price-card featured">
+      <div class="feat-tag">Рекомендуем</div>
+      <span class="price-dur">5 дней</span>
+      <div class="price-num"><sup>₽</sup>46 000</div>
+      <p class="price-desc">Полная перезагрузка — настоящий результат</p>
+      <ul class="price-feats">
+        <li>Горячее питание</li>
+        <li>Всё снаряжение</li>
+        <li>Все тренинги</li>
+        <li>День молчания</li>
+        <li>Ночной «Сбитый лётчик»</li>
+      </ul>
+      <a href="https://t.me/proztas" class="btn-card">Записаться</a>
+    </div>
+  </div>
+  <p class="pricing-note">Ближайший заезд · <strong>15 июня 2026</strong> · Группа 15 человек</p>
+</div>
+
+<!-- LOCATION -->
+<div class="section location-section" id="location">
+  <div class="section-inner">
+    <div class="loc-layout">
+      <div class="loc-visual">
+        <div class="loc-bg"></div>
+        <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.15" viewBox="0 0 600 460" preserveAspectRatio="xMidYMax slice" fill="none">
+          <path d="M0 460 L0 340 L50 240 L100 340 L100 280 L160 150 L220 280 L220 240 L290 80 L360 240 L360 200 L430 100 L500 200 L500 260 L560 160 L600 220 L600 460 Z" fill="white"/>
+        </svg>
+        <div class="loc-center">
+          <div class="loc-pin-ring">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#B8923A" stroke-width="1.5" stroke-linecap="round">
+              <circle cx="8" cy="6" r="3"/>
+              <path d="M8 9 C8 9 3 13 3 13"/>
+              <path d="M8 9 C8 9 13 13 13 13"/>
+            </svg>
+          </div>
+          <strong>Живой Лес</strong>
+          <p>Тутаевский район · Ярославль</p>
+        </div>
+      </div>
+      <div>
+        <span class="label">Место</span>
+        <h2>Берег <em>Волги</em>,<br>Ярославль</h2>
+        <div class="rule-sep"></div>
+        <div class="loc-facts">
+          <div class="loc-fact">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M4 16 Q4 8 10 6 Q16 8 16 16"/><path d="M2 16 L18 16"/></svg>
+            <div><strong>Берег Волги</strong><p>Лагерь прямо у воды. Купаемся каждый день — река чистая, течение мягкое.</p></div>
+          </div>
+          <div class="loc-fact">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><circle cx="10" cy="8" r="4"/><path d="M10 12 L10 18"/><path d="M7 18 L13 18"/></svg>
+            <div><strong>Тутаевский район</strong><p>2 часа от Москвы. Встреча группы организована в Ярославле.</p></div>
+          </div>
+          <div class="loc-fact">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><rect x="3" y="3" width="14" height="14" rx="2"/><line x1="3" y1="8" x2="17" y2="8"/><line x1="7" y1="3" x2="7" y2="8"/><line x1="13" y1="3" x2="13" y2="8"/></svg>
+            <div><strong>Трансфер из Ярославля</strong><p>Место сбора и время встречи сообщаем после записи.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <div class="faq-inner">
+    <span class="label">Вопросы</span>
+    <h2>Часто<br><em>спрашивают</em></h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>Нужен ли опыт медитации?</span>
+          <div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+        </div>
+        <div class="faq-a">Нет. Медитации ведут сами участники группы по очереди — это простые практики осознанности, доступные любому.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>Можно ли взять телефон на случай экстренной связи?</span>
+          <div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+        </div>
+        <div class="faq-a">Телефон можно оставить выключенным в рюкзаке. Для связи с близкими — у организатора есть контактный номер, который мы передаём родственникам.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>Я никогда не спал в палатке. Это проблема?</span>
+          <div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+        </div>
+        <div class="faq-a">Совсем нет. Палатки двухкомнатные, спальники тёплые. Большинство участников приходят без туристического опыта — и именно это делает опыт особенным.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>Как забронировать место?</span>
+          <div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+        </div>
+        <div class="faq-a">Напишите в Telegram — обсудим детали, ответим на вопросы и зафиксируем место за вами. Группа ограничена 15 людьми.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="cta-final">
+  <div class="cta-bg"></div>
+  <span class="label" style="display:inline-flex;justify-content:center;color:var(--gold)">Следующий шаг</span>
+  <h2>Готов<br><em>попробовать?</em></h2>
+  <div class="rule-sep" style="margin:24px auto"></div>
+  <p class="lead">Напишите нам в Telegram — расскажем подробнее, ответим на все вопросы и зафиксируем место за вами.</p>
+  <div class="cta-date-pill">Ближайший заезд · 15 июня 2026</div>
+  <br>
+  <a href="https://t.me/proztas" class="btn-primary">Записаться в Telegram</a>
+  <br><br>
+  <a href="https://t.me/zhivoy_les" style="color:rgba(196,185,168,0.35);font-size:11px;letter-spacing:3px;text-decoration:none;text-transform:uppercase">@zhivoy_les</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="foot-logo">Живой<span>Лес</span></a>
+  <p>Берег Волги · Тутаевский район · Ярославская область</p>
+  <a href="https://t.me/zhivoy_les">Telegram @zhivoy_les</a>
+</footer>
+
+<script>
+const navbar=document.getElementById('navbar');
+const burgerBtn=document.getElementById('burgerBtn');
+const menuOverlay=document.getElementById('menuOverlay');
+const menuClose=document.getElementById('menuClose');
+
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled',window.scrollY>60);
+});
+
+burgerBtn.addEventListener('click',()=>{
+  menuOverlay.classList.add('open');
+  document.body.style.overflow='hidden';
+});
+function closeMenu(){
+  menuOverlay.classList.remove('open');
+  document.body.style.overflow='';
+}
+menuClose.addEventListener('click',closeMenu);
+menuOverlay.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+
+// FAQ
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement;
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+});
+
+// Fade-in on scroll
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.opacity='1';
+      e.target.style.transform='translateY(0)';
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.prog-card,.inc-cell,.rule-card,.loc-fact,.price-card,.why-item').forEach(el=>{
+  el.style.opacity='0';
+  el.style.transform='translateY(18px)';
+  el.style.transition='opacity 0.5s ease,transform 0.5s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>

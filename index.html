@@ -3,450 +3,543 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Живой Лес">
-<meta name="description" content="Ретрит на берегу Волги. 3–5 дней без телефонов.">
-<meta name="theme-color" content="#3D2E1E">
-<title>Живой Лес — Ретрит на Волге</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Живой Лес — Предпросмотр сайта</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#1A1710;--bark:#3D2E1E;--earth:#5C4033;--stone:#8C7B6A;--sand:#C4A882;--parch:#D4B896;--cream:#F4EDE0;--fog:#FAF6EF;--fire:#C85A1E;--ember:#E8834A;--moss:#4A5E38;--river:#3A5A6B;}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bark:#1E1209;--moss:#2E3D22;--earth:#5C3D1E;--stone:#8A7968;
+  --mist:#C4B9A8;--cream:#F5F0E8;--gold:#B8923A;--gold-light:#D4AA55;
+  --white:#FDFBF7;
+  --ff-serif:'Cormorant Garamond',Georgia,serif;
+  --ff-sans:'Jost',sans-serif;
+}
 html{scroll-behavior:smooth}
-body{background:var(--fog);color:var(--ink);font-family:'Nunito',sans-serif;overflow-x:hidden}
+body{font-family:var(--ff-sans);background:var(--bark);color:var(--cream);-webkit-font-smoothing:antialiased;min-height:100vh}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,246,239,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(92,64,51,.1)}
-.nav-logo{font-family:'Playfair Display',serif;font-size:18px;color:var(--bark);text-decoration:none;font-weight:700}
-.nav-links{display:flex;gap:20px;list-style:none}
-.nav-links a{color:var(--stone);text-decoration:none;font-size:13px;font-weight:600;transition:color .2s}
-.nav-links a:hover{color:var(--fire)}
-.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-.burger span{width:22px;height:2px;background:var(--bark);border-radius:2px;transition:all .3s}
-@media(max-width:600px){.nav-links{display:none;position:fixed;top:57px;left:0;right:0;background:var(--fog);padding:20px;flex-direction:column;gap:16px;border-bottom:1px solid rgba(92,64,51,.1)}.nav-links.open{display:flex}.burger{display:flex}}
+/* HEADER */
+.header{
+  padding:48px 60px 0;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  flex-wrap:wrap;gap:24px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  padding-bottom:40px;
+}
+.logo{font-family:var(--ff-serif);font-size:28px;font-weight:300;color:var(--cream)}
+.logo span{color:var(--gold)}
+.header-meta{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,185,168,0.35)}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;background:linear-gradient(180deg,#1a1008 0%,#2d1f0e 40%,#3d2e1e 100%);overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(200,90,30,.15),transparent 70%);pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,90,30,.15);border:1px solid rgba(200,90,30,.3);color:var(--ember);padding:6px 16px;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(42px,10vw,80px);color:var(--cream);line-height:1.05;margin-bottom:16px}
-.hero h1 em{color:var(--ember);font-style:normal}
-.hero-sub{font-size:clamp(14px,3vw,18px);color:var(--stone);max-width:480px;line-height:1.7;margin-bottom:40px}
-.hero-date{background:rgba(244,237,224,.08);border:1px solid rgba(244,237,224,.15);color:var(--cream);padding:12px 28px;border-radius:12px;font-size:14px;font-weight:600;margin-bottom:32px}
-.hero-date span{color:var(--ember)}
-.btn-primary{display:inline-block;background:var(--fire);color:var(--fog);padding:14px 36px;border-radius:99px;text-decoration:none;font-weight:700;font-size:15px;transition:all .2s;border:none;cursor:pointer}
-.btn-primary:hover{background:var(--ember);transform:translateY(-2px)}
-.btn-secondary{display:inline-block;background:transparent;color:var(--cream);border:1px solid rgba(244,237,224,.3);padding:14px 36px;border-radius:99px;text-decoration:none;font-weight:600;font-size:15px;transition:all .2s;margin-left:12px}
-.btn-secondary:hover{border-color:var(--ember);color:var(--ember)}
-.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);color:var(--stone);font-size:12px;letter-spacing:2px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
-.hero-scroll::after{content:'';width:1px;height:40px;background:linear-gradient(to bottom,var(--stone),transparent)}
+.dash-hero{
+  padding:64px 60px 48px;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.dash-hero h1{
+  font-family:var(--ff-serif);font-size:clamp(36px,5vw,64px);
+  font-weight:300;line-height:1.1;color:var(--cream);
+}
+.dash-hero h1 em{font-style:italic;color:var(--gold-light)}
+.dash-hero p{font-size:14px;font-weight:300;color:rgba(196,185,168,0.6);line-height:1.85;margin-top:20px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.06)}
+.stat{background:rgba(255,255,255,0.03);padding:28px 24px;text-align:center}
+.stat-num{font-family:var(--ff-serif);font-size:44px;font-weight:300;color:var(--cream);display:block;line-height:1}
+.stat-num em{font-style:italic;color:var(--gold);font-size:28px}
+.stat-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,185,168,0.35);margin-top:8px;display:block}
 
-/* SECTIONS */
-.section{padding:80px 24px;max-width:100%}
-.container{max-width:700px;margin:0 auto}
-.section-badge{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--fire);margin-bottom:10px;text-align:center}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,6vw,42px);color:var(--bark);text-align:center;margin-bottom:12px;line-height:1.2}
-.section-sub{color:var(--stone);font-size:14px;text-align:center;margin-bottom:32px;line-height:1.7}
-.section-dark{background:var(--bark)}
-.section-dark .section-title{color:var(--cream)}
-.section-dark .section-sub{color:var(--stone)}
+/* PAGES GRID */
+.pages{padding:60px;display:grid;grid-template-columns:repeat(3,1fr);gap:3px;background:rgba(255,255,255,0.04)}
 
-/* INCLUDES */
-.includes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:32px}
-.include-item{background:rgba(92,64,51,.08);border:1px solid rgba(92,64,51,.12);border-radius:12px;padding:16px;text-align:center}
-.include-item .icon{font-size:28px;margin-bottom:8px}
-.include-item p{font-size:12px;color:var(--stone);font-weight:600}
+.page-card{
+  background:rgba(255,255,255,0.03);
+  display:flex;flex-direction:column;
+  transition:background 0.3s;
+  position:relative;
+  overflow:hidden;
+}
+.page-card:hover{background:rgba(255,255,255,0.07)}
+.page-card.featured{background:rgba(184,146,58,0.07)}
+.page-card.featured:hover{background:rgba(184,146,58,0.12)}
 
-/* PROGRAM */
-.program-list{display:grid;gap:16px}
-.program-item{display:flex;gap:16px;align-items:flex-start;padding:20px;background:var(--fog);border:1px solid rgba(92,64,51,.1);border-radius:14px}
-.program-num{font-family:'Playfair Display',serif;font-size:32px;color:var(--sand);line-height:1;flex-shrink:0;width:40px}
-.program-item h3{font-size:15px;font-weight:700;color:var(--bark);margin-bottom:4px}
-.program-item p{font-size:13px;color:var(--stone);line-height:1.6}
+.card-top{padding:36px 36px 0;display:flex;align-items:flex-start;justify-content:space-between}
+.card-num{
+  font-family:var(--ff-serif);font-size:13px;font-style:italic;
+  color:rgba(184,146,58,0.5);letter-spacing:1px;
+}
+.card-badge{
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(184,146,58,0.3);
+  padding:4px 10px;
+}
 
-/* MENU */
-.menu-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;justify-content:center}
-.mtab{background:rgba(92,64,51,.08);border:1px solid rgba(92,64,51,.15);color:var(--stone);padding:7px 16px;border-radius:20px;cursor:pointer;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;transition:all .2s}
-.mtab:hover{border-color:var(--fire);color:var(--bark)}
-.mtab.active{background:var(--fire);color:var(--fog);border-color:var(--fire)}
-.day-menu{display:none;gap:8px;flex-direction:column}
-.day-menu.active{display:flex}
-.meal{display:flex;gap:12px;align-items:flex-start;background:var(--fog);border:1px solid rgba(92,64,51,.1);border-radius:10px;padding:12px 14px}
-.meal.special{border-color:var(--fire);background:rgba(200,90,30,.05)}
-.meal-ico{font-size:20px;flex-shrink:0;width:26px;text-align:center;padding-top:1px}
-.meal strong{font-size:13px;color:var(--bark);display:block;margin-bottom:2px}
-.meal p{font-size:12px;color:var(--stone);margin:0;line-height:1.5}
+.card-icon{
+  padding:28px 36px 0;
+}
 
-/* SCHEDULE */
-.schedule-wrap{border:1px solid rgba(92,64,51,.15);border-radius:14px;overflow:hidden}
-.sched-block{border-bottom:1px solid rgba(92,64,51,.1)}
-.sched-block:last-child{border-bottom:none}
-.sched-header{padding:12px 16px;background:rgba(92,64,51,.06);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--fire)}
-.sched-item{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:start;padding:10px 16px;border-bottom:1px solid rgba(92,64,51,.06)}
-.sched-item:last-child{border-bottom:none}
-.stime{font-size:12px;font-weight:800;color:var(--fire);font-family:monospace;padding-top:2px}
-.sched-item strong{font-size:12px;color:var(--bark);display:block;margin-bottom:1px}
-.sched-item span{font-size:11px;color:var(--stone)}
+.card-body{padding:20px 36px 32px;flex:1;display:flex;flex-direction:column}
+.card-title{
+  font-family:var(--ff-serif);font-size:22px;font-weight:300;
+  color:var(--cream);margin-bottom:10px;line-height:1.25;
+}
+.card-desc{
+  font-size:12px;font-weight:300;color:rgba(196,185,168,0.5);
+  line-height:1.75;flex:1;margin-bottom:24px;
+}
+.card-keywords{
+  display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px;
+}
+.kw{
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(196,185,168,0.3);border:1px solid rgba(255,255,255,0.07);
+  padding:3px 8px;
+}
+.card-link{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--ff-sans);font-size:10px;font-weight:500;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;
+  border:1px solid rgba(184,146,58,0.3);
+  padding:12px 20px;
+  transition:all 0.25s;align-self:flex-start;
+}
+.card-link:hover{background:var(--gold);color:var(--bark)}
+.card-link svg{transition:transform 0.2s}
+.card-link:hover svg{transform:translateX(4px)}
 
-/* CHECKLIST */
-.check-progress{margin-bottom:20px;background:var(--fog);border:1px solid rgba(92,64,51,.1);border-radius:12px;padding:14px 16px;text-align:center}
-.check-bar-bg{background:rgba(92,64,51,.12);border-radius:99px;height:8px;margin-bottom:8px}
-.check-bar{background:linear-gradient(90deg,var(--moss),var(--fire));height:100%;border-radius:99px;width:0%;transition:width .3s}
-#ccount{font-size:12px;color:var(--stone)}
-.check-grid{display:grid;gap:8px}
-.check-item{display:flex;gap:10px;align-items:flex-start;background:var(--fog);border:1px solid rgba(92,64,51,.1);border-radius:10px;padding:11px 13px;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;user-select:none}
-.check-item.done{border-color:rgba(74,94,56,.4);background:rgba(74,94,56,.06)}
-.check-item.done strong{text-decoration:line-through;opacity:.5}
-.cbox{font-size:16px;flex-shrink:0;color:var(--stone);transition:all .2s;width:22px;margin-top:1px}
-.check-item.done .cbox{color:var(--moss)}
-.check-item strong{font-size:12px;color:var(--bark);display:block;margin-bottom:2px}
-.check-item p{font-size:11px;color:var(--stone);margin:0;line-height:1.5}
-.must{font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;letter-spacing:1px;white-space:nowrap;flex-shrink:0;background:rgba(200,90,30,.1);color:var(--fire);border:1px solid rgba(200,90,30,.2);align-self:flex-start;margin-top:2px}
-.reset-check{display:block;margin:16px auto 0;background:transparent;border:1px solid rgba(92,64,51,.2);color:var(--stone);border-radius:20px;padding:8px 20px;font-size:11px;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .2s}
-.reset-check:hover{border-color:var(--fire);color:var(--fire)}
+/* STATUS BAR */
+.card-status{
+  padding:14px 36px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;gap:10px;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(196,185,168,0.3);
+}
+.status-dot{width:6px;height:6px;border-radius:50%;background:rgba(184,146,58,0.6);flex-shrink:0}
 
-/* RULES */
-.rules-list{display:grid;gap:10px}
-.rule-item{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:12px;border:1px solid rgba(244,237,224,.1)}
-.rule-item.no{background:rgba(200,90,30,.1);border-color:rgba(200,90,30,.2)}
-.rule-item.yes{background:rgba(74,94,56,.1);border-color:rgba(74,94,56,.2)}
-.rule-ico{font-size:22px;flex-shrink:0}
-.rule-item strong{font-size:13px;color:var(--cream);display:block;margin-bottom:3px}
-.rule-item p{font-size:12px;color:var(--stone);line-height:1.6}
+/* SECTION LABEL */
+.section-label{
+  padding:40px 60px 20px;
+  font-size:10px;letter-spacing:5px;text-transform:uppercase;
+  color:rgba(196,185,168,0.25);
+  display:flex;align-items:center;gap:16px;
+  border-top:1px solid rgba(255,255,255,0.04);
+}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.04)}
 
-/* PRICING */
-.pricing-grid{display:grid;gap:16px}
-@media(min-width:500px){.pricing-grid{grid-template-columns:1fr 1fr}}
-.price-card{background:var(--fog);border:2px solid rgba(92,64,51,.15);border-radius:20px;padding:28px 24px;text-align:center;transition:all .2s}
-.price-card.featured{border-color:var(--fire);background:white}
-.price-card .days{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-bottom:8px}
-.price-card .price{font-family:'Playfair Display',serif;font-size:42px;color:var(--bark);margin-bottom:4px}
-.price-card .price span{font-size:18px}
-.price-card .desc{font-size:13px;color:var(--stone);margin-bottom:20px}
-.price-card ul{list-style:none;text-align:left;margin-bottom:24px}
-.price-card ul li{font-size:13px;color:var(--stone);padding:5px 0;border-bottom:1px solid rgba(92,64,51,.08);display:flex;gap:8px;align-items:center}
-.price-card ul li::before{content:'✓';color:var(--moss);font-weight:700;flex-shrink:0}
-
-/* ABOUT */
-.about-grid{display:grid;gap:12px}
-.about-item{background:var(--fog);border:1px solid rgba(92,64,51,.1);border-radius:12px;padding:18px}
-.about-item h3{font-size:14px;font-weight:700;color:var(--bark);margin-bottom:6px;display:flex;align-items:center;gap:8px}
-.about-item p{font-size:13px;color:var(--stone);line-height:1.7}
+/* STRUCTURE */
+.structure{padding:0 60px 60px;display:grid;grid-template-columns:1fr 1fr;gap:3px;background:rgba(255,255,255,0.04)}
+.str-card{background:rgba(255,255,255,0.02);padding:32px;display:flex;gap:20px;align-items:flex-start}
+.str-icon{flex-shrink:0;margin-top:2px;color:var(--gold)}
+.str-card strong{display:block;font-size:13px;font-weight:500;color:var(--cream);margin-bottom:6px}
+.str-card p{font-size:12px;font-weight:300;color:rgba(196,185,168,0.45);line-height:1.65}
 
 /* FOOTER */
-footer{background:var(--ink);padding:40px 24px;text-align:center}
-.footer-logo{font-family:'Playfair Display',serif;font-size:22px;color:var(--cream);margin-bottom:16px}
-.footer-nav{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;list-style:none}
-.footer-nav a{color:var(--stone);text-decoration:none;font-size:13px;transition:color .2s}
-.footer-nav a:hover{color:var(--ember)}
-.footer-copy{font-size:12px;color:rgba(140,123,106,.5)}
+.dash-footer{
+  padding:36px 60px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:16px;
+}
+.dash-footer p{font-size:11px;color:rgba(196,185,168,0.25);letter-spacing:1px}
+.dash-footer a{font-size:11px;color:var(--gold);text-decoration:none;letter-spacing:2px}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-.reveal.visible{opacity:1;transform:none}
+/* RESPONSIVE */
+@media(max-width:1100px){.pages{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){
+  .header,.dash-hero,.pages,.structure,.section-label,.dash-footer{padding-left:20px;padding-right:20px}
+  .dash-hero{grid-template-columns:1fr;gap:40px}
+  .structure{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .pages{grid-template-columns:1fr}
+  .card-top,.card-icon,.card-body,.card-status{padding-left:24px;padding-right:24px}
+}
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="#" class="nav-logo">🌲 Живой Лес</a>
-  <div class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#program" onclick="closeMenu()">Программа</a></li>
-    <li><a href="#menu" onclick="closeMenu()">Меню</a></li>
-    <li><a href="#schedule" onclick="closeMenu()">Распорядок</a></li>
-    <li><a href="#checklist" onclick="closeMenu()">Вещи</a></li>
-    <li><a href="#pricing" onclick="closeMenu()">Стоимость</a></li>
-    <li><a href="https://t.me/zhivoy_les" target="_blank">Telegram</a></li>
-  </ul>
-</nav>
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">Живой<span>Лес</span></div>
+  <div class="header-meta">Предпросмотр сайта · 9 страниц готово</div>
+</div>
 
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-badge">🌿 Ярославль · Волга · Тутаевский район</div>
-  <h1>Живой<br><em>Лес</em></h1>
-  <p class="hero-sub">5 дней без телефонов. Костёр, река, медитации. Встреча с собой — настоящая.</p>
-  <div class="hero-date">Ближайший заезд: <span>15 июня 2026</span> · Группа 15 человек</div>
+<!-- DASH HERO -->
+<div class="dash-hero">
   <div>
-    <a href="https://t.me/proztas" class="btn-primary" target="_blank">Записаться</a>
-    <a href="#program" class="btn-secondary">Программа</a>
+    <h1>Сайт <em>готов</em><br>к размещению</h1>
+    <p>Все страницы созданы в едином стиле — премиум шрифты, SVG-иконки, мобильная адаптация, навигационное меню. Откройте любую страницу ниже для финальной проверки перед загрузкой на хостинг.</p>
   </div>
-  <div class="hero-scroll">Листай вниз</div>
-</section>
-
-<!-- ВКЛЮЧЕНО -->
-<section class="section" id="includes">
-  <div class="container reveal">
-    <div class="section-badge">⛺ Всё включено</div>
-    <h2 class="section-title">С нас — забота обо всём</h2>
-    <p class="section-sub">С тебя — только готовность попробовать 💪</p>
-    <div class="includes-grid">
-      <div class="include-item"><div class="icon">⛺</div><p>Двухкомнатные палатки</p></div>
-      <div class="include-item"><div class="icon">🛏</div><p>Спальники</p></div>
-      <div class="include-item"><div class="icon">🔦</div><p>Фонари</p></div>
-      <div class="include-item"><div class="icon">🧘</div><p>Коврики для йоги</p></div>
-      <div class="include-item"><div class="icon">🪑</div><p>Подпопники</p></div>
-      <div class="include-item"><div class="icon">🦟</div><p>Защита от насекомых</p></div>
-      <div class="include-item"><div class="icon">🍽</div><p>Горячее питание</p></div>
-      <div class="include-item"><div class="icon">🔥</div><p>Костёр и дрова</p></div>
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-num">9</span>
+      <span class="stat-label">Страниц готово</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">9<em>+</em></span>
+      <span class="stat-label">Блоков на каждой</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">100<em>%</em></span>
+      <span class="stat-label">Мобильная адаптация</span>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ПРОГРАММА -->
-<section class="section" id="program" style="background:var(--cream)">
-  <div class="container reveal">
-    <div class="section-badge">🎯 Программа</div>
-    <h2 class="section-title">Что вас ждёт</h2>
-    <p class="section-sub">Каждый день — насыщенный. Никакой суеты.</p>
-    <div class="program-list">
-      <div class="program-item"><div class="program-num">01</div><div><h3>🧘 Медитации — 3 раза в день</h3><p>Утро, обед, вечер. По 20 минут. Ведёт функционер — участник из группы.</p></div></div>
-      <div class="program-item"><div class="program-num">02</div><div><h3>⚡ Утренняя зарядка</h3><p>15 минут. Разминка, кардио, растяжка. Обязательно для всех.</p></div></div>
-      <div class="program-item"><div class="program-num">03</div><div><h3>🪑 Тренинг «Горячий стул»</h3><p>Честная обратная связь от группы. Говорим что ценим — и что мешает.</p></div></div>
-      <div class="program-item"><div class="program-num">04</div><div><h3>✈️ «Сбитый лётчик» — ночной</h3><p>Командный тренинг на выживание. Принятие решений под давлением.</p></div></div>
-      <div class="program-item"><div class="program-num">05</div><div><h3>🚩 Найти флаг</h3><p>Стратегическая игра на местности. Командная работа и доверие.</p></div></div>
-      <div class="program-item"><div class="program-num">06</div><div><h3>🙊 День молчания</h3><p>Один день без слов. Только жесты и записки. Услышь себя.</p></div></div>
-      <div class="program-item"><div class="program-num">07</div><div><h3>📖 Чтение у костра</h3><p>Читаем вслух, делимся что откликнулось. Живое общение.</p></div></div>
-      <div class="program-item"><div class="program-num">08</div><div><h3>🏐 Волейбол и купание</h3><p>Ежедневно. Волга рядом. Тело тоже должно работать.</p></div></div>
-      <div class="program-item"><div class="program-num">09</div><div><h3>🎮 Вечерние игры</h3><p>Мафия, Горячая картошка, Правда–неправда. Смех обязателен.</p></div></div>
-      <div class="program-item"><div class="program-num">10</div><div><h3>🔥 Итоги дня у костра</h3><p>Каждый вечер — слово каждого. Что получил сегодня?</p></div></div>
-    </div>
-  </div>
-</section>
+<!-- SECTION LABEL -->
+<div class="section-label">Посадочные страницы</div>
 
-<!-- МЕНЮ -->
-<section class="section" id="menu">
-  <div class="container reveal">
-    <div class="section-badge">🍽 Питание</div>
-    <h2 class="section-title">Меню по дням</h2>
-    <p class="section-sub">Горячее питание 3 раза в день. Готовим на костре.</p>
-    <div class="menu-tabs">
-      <button class="mtab active" onclick="showDay(1)">День 1</button>
-      <button class="mtab" onclick="showDay(2)">День 2</button>
-      <button class="mtab" onclick="showDay(3)">День 3</button>
-      <button class="mtab" onclick="showDay(4)">День 4</button>
-      <button class="mtab" onclick="showDay(5)">День 5</button>
-    </div>
-    <div id="day1" class="day-menu active">
-      <div class="meal"><span class="meal-ico">🌅</span><div><strong>Завтрак</strong><p>Геркулесовая каша с сухофруктами, чай</p></div></div>
-      <div class="meal"><span class="meal-ico">🍫</span><div><strong>Перекус</strong><p>Орехово-фруктовая смесь, шоколад</p></div></div>
-      <div class="meal"><span class="meal-ico">🌞</span><div><strong>Обед</strong><p>Гречневый суп с тушёнкой</p></div></div>
-      <div class="meal"><span class="meal-ico">🌙</span><div><strong>Ужин</strong><p>Макароны с сыром и чесноком</p></div></div>
-    </div>
-    <div id="day2" class="day-menu">
-      <div class="meal"><span class="meal-ico">🌅</span><div><strong>Завтрак</strong><p>Пшённая каша с маслом и сахаром</p></div></div>
-      <div class="meal"><span class="meal-ico">🍫</span><div><strong>Перекус</strong><p>Галеты + арахисовая паста</p></div></div>
-      <div class="meal"><span class="meal-ico">🌞</span><div><strong>Обед</strong><p>Чечевичный суп с копчёностями</p></div></div>
-      <div class="meal"><span class="meal-ico">🌙</span><div><strong>Ужин</strong><p>Рис с тушёнкой и луком</p></div></div>
-    </div>
-    <div id="day3" class="day-menu">
-      <div class="meal"><span class="meal-ico">🌅</span><div><strong>Завтрак</strong><p>Манная каша со сгущёнкой</p></div></div>
-      <div class="meal"><span class="meal-ico">🍫</span><div><strong>Перекус</strong><p>Энергетические батончики + орехи</p></div></div>
-      <div class="meal"><span class="meal-ico">🌞</span><div><strong>Обед</strong><p>Гороховый суп с салом и сухариками</p></div></div>
-      <div class="meal special"><span class="meal-ico">🌙</span><div><strong>Ужин ★ Праздничный</strong><p>Плов с курицей на костре</p></div></div>
-    </div>
-    <div id="day4" class="day-menu">
-      <div class="meal"><span class="meal-ico">🌅</span><div><strong>Завтрак</strong><p>Гречка с яичным порошком и зеленью</p></div></div>
-      <div class="meal"><span class="meal-ico">🍫</span><div><strong>Перекус</strong><p>Ржаные сухари + мёд</p></div></div>
-      <div class="meal"><span class="meal-ico">🌞</span><div><strong>Обед</strong><p>Борщ быстрого приготовления + хлебцы</p></div></div>
-      <div class="meal"><span class="meal-ico">🌙</span><div><strong>Ужин</strong><p>Картофельное пюре с тушёнкой</p></div></div>
-    </div>
-    <div id="day5" class="day-menu">
-      <div class="meal"><span class="meal-ico">🌅</span><div><strong>Завтрак</strong><p>Овсянка с шоколадом и орехами</p></div></div>
-      <div class="meal"><span class="meal-ico">🍫</span><div><strong>Перекус</strong><p>Остатки орехов и шоколада</p></div></div>
-      <div class="meal"><span class="meal-ico">🌞</span><div><strong>Обед</strong><p>Макароны по-флотски</p></div></div>
-      <div class="meal special"><span class="meal-ico">🌙</span><div><strong>Ужин ★ Прощальный</strong><p>Гречка с грибами + чай с шоколадом</p></div></div>
-    </div>
-  </div>
-</section>
+<!-- PAGES GRID -->
+<div class="pages">
 
-<!-- РАСПИСАНИЕ -->
-<section class="section section-dark" id="schedule">
-  <div class="container reveal">
-    <div class="section-badge">📅 Распорядок</div>
-    <h2 class="section-title">Распорядок дня</h2>
-    <p class="section-sub" style="color:var(--stone)">Каждый день одинаковый ритм — это создаёт спокойствие.</p>
-    <div class="schedule-wrap">
-      <div class="sched-block">
-        <div class="sched-header">🌅 Утро</div>
-        <div class="sched-item"><span class="stime">07:00</span><div><strong>Подъём</strong><span>Умывание, приведение себя в порядок</span></div></div>
-        <div class="sched-item"><span class="stime">07:15</span><div><strong>⚡ Зарядка — 15 мин</strong><span>Ведёт физорг. Обязательно для всех</span></div></div>
-        <div class="sched-item"><span class="stime">07:30</span><div><strong>🧘 Утренняя медитация</strong><span>20 минут. Настрой на день</span></div></div>
-        <div class="sched-item"><span class="stime">08:00</span><div><strong>🍳 Завтрак</strong><span>Горячее питание у костра</span></div></div>
-        <div class="sched-item"><span class="stime">09:00</span><div><strong>☀️ Утреннее собрание</strong><span>План дня. Назначение дежурных и функционеров</span></div></div>
+  <!-- 1 -->
+  <div class="page-card featured">
+    <div class="card-top">
+      <span class="card-num">01</span>
+      <span class="card-badge">Главная</span>
+    </div>
+    <div class="card-icon">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#D4AA55" stroke-width="1" stroke-linecap="round">
+        <path d="M4 36 L4 20 L20 6 L36 20 L36 36"/>
+        <line x1="1" y1="36" x2="39" y2="36"/>
+        <path d="M14 36 L14 26 Q20 22 26 26 L26 36"/>
+        <line x1="20" y1="6" x2="20" y2="2"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Ретрит на природе</div>
+      <p class="card-desc">Основная посадочная страница. Hero с заголовком, блок «зачем ретрит», программа, что включено, правила, стоимость, FAQ, финальный CTA.</p>
+      <div class="card-keywords">
+        <span class="kw">ретрит на природе</span>
+        <span class="kw">ретрит Ярославль</span>
+        <span class="kw">ретрит на Волге</span>
+        <span class="kw">ретрит без телефонов</span>
       </div>
-      <div class="sched-block">
-        <div class="sched-header">🌞 День</div>
-        <div class="sched-item"><span class="stime">09:30</span><div><strong>🎯 Активность / тренинг</strong><span>По программе дня</span></div></div>
-        <div class="sched-item"><span class="stime">13:00</span><div><strong>🍲 Обед</strong><span>Горячее питание</span></div></div>
-        <div class="sched-item"><span class="stime">13:30</span><div><strong>🧘 Дневная медитация</strong><span>20 минут. Восстановление сил</span></div></div>
-        <div class="sched-item"><span class="stime">14:00</span><div><strong>🎯 Вторая активность</strong><span>Тренинг, игры или купание</span></div></div>
-        <div class="sched-item"><span class="stime">16:30</span><div><strong>☕ Чаепитие</strong><span>Свободное общение у костра</span></div></div>
+      <a href="retrit-na-prirode.html" class="card-link">
+        Открыть страницу
+        <svg width="16" height="8" viewBox="0 0 16 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><line x1="0" y1="4" x2="14" y2="4"/><polyline points="10,1 14,4 10,7"/></svg>
+      </a>
+    </div>
+    <div class="card-status"><div class="status-dot"></div>Готово · retrit-na-prirode.html</div>
+  </div>
+
+  <!-- 2 -->
+  <div class="page-card">
+    <div class="card-top"><span class="card-num">02</span></div>
+    <div class="card-icon">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+        <circle cx="20" cy="20" r="16"/>
+        <line x1="20" y1="4" x2="20" y2="36"/>
+        <line x1="4" y1="20" x2="36" y2="20"/>
+        <circle cx="20" cy="20" r="8" stroke-dasharray="3 3"/>
+        <circle cx="20" cy="20" r="3" fill="#B8923A"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Медитации на природе</div>
+      <p class="card-desc">Страница под запросы по медитации. Три практики, день молчания по часам, для кого и нет, статистика, FAQ.</p>
+      <div class="card-keywords">
+        <span class="kw">медитация на природе</span>
+        <span class="kw">ретрит медитация</span>
+        <span class="kw">день молчания</span>
+        <span class="kw">медитация Ярославль</span>
       </div>
-      <div class="sched-block">
-        <div class="sched-header">🌙 Вечер</div>
-        <div class="sched-item"><span class="stime">19:00</span><div><strong>🍽 Ужин</strong><span>Горячее питание</span></div></div>
-        <div class="sched-item"><span class="stime">20:00</span><div><strong>📖 Чтение у костра</strong><span>Читаем вслух, делимся что откликнулось</span></div></div>
-        <div class="sched-item"><span class="stime">20:30</span><div><strong>🧘 Вечерняя медитация</strong><span>20 минут. Завершение дня</span></div></div>
-        <div class="sched-item"><span class="stime">21:00</span><div><strong>🔥 Итоги дня</strong><span>Каждый говорит что получил. Выбор на завтра</span></div></div>
-        <div class="sched-item"><span class="stime">21:30</span><div><strong>🎮 Вечерняя игра</strong><span>Мафия / Горячий стул / Правда-неправда</span></div></div>
-        <div class="sched-item"><span class="stime">23:00</span><div><strong>😴 Отбой</strong><span>Тишина в лагере</span></div></div>
+      <a href="meditacii-na-prirode.html" class="card-link">
+        Открыть страницу
+        <svg width="16" height="8" viewBox="0 0 16 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><line x1="0" y1="4" x2="14" y2="4"/><polyline points="10,1 14,4 10,7"/></svg>
+      </a>
+    </div>
+    <div class="card-status"><div class="status-dot"></div>Готово · meditacii-na-prirode.html</div>
+  </div>
+
+  <!-- 3 -->
+  <div class="page-card">
+    <div class="card-top"><span class="card-num">03</span></div>
+    <div class="card-icon">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+        <circle cx="20" cy="10" r="5"/>
+        <circle cx="8" cy="30" r="4"/>
+        <circle cx="32" cy="30" r="4"/>
+        <line x1="15" y1="13" x2="10" y2="26"/>
+        <line x1="25" y1="13" x2="30" y2="26"/>
+        <line x1="12" y1="30" x2="28" y2="30"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Корпоративный выезд</div>
+      <p class="card-desc">Страница для HR и руководителей. Проблема обычного тимбилдинга, три формата, программа активностей, результат, условия.</p>
+      <div class="card-keywords">
+        <span class="kw">тимбилдинг на природе</span>
+        <span class="kw">корпоративный выезд</span>
+        <span class="kw">командный тренинг</span>
       </div>
+      <a href="korporativnyy-vyyezd.html" class="card-link">
+        Открыть страницу
+        <svg width="16" height="8" viewBox="0 0 16 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><line x1="0" y1="4" x2="14" y2="4"/><polyline points="10,1 14,4 10,7"/></svg>
+      </a>
     </div>
+    <div class="card-status"><div class="status-dot"></div>Готово · korporativnyy-vyyezd.html</div>
   </div>
-</section>
 
-<!-- ПРАВИЛА -->
-<section class="section section-dark" id="rules" style="padding-top:0">
-  <div class="container reveal">
-    <div class="section-badge">📜 Правила</div>
-    <h2 class="section-title">Три главных запрета</h2>
-    <div class="rules-list">
-      <div class="rule-item no"><span class="rule-ico">😤</span><div><strong>Нет агрессии</strong><p>Никаких криков и унижений. Конфликты решаем через разговор.</p></div></div>
-      <div class="rule-item no"><span class="rule-ico">🍺</span><div><strong>Нет алкоголя</strong><p>Полный сухой закон. Не обсуждается.</p></div></div>
-      <div class="rule-item no"><span class="rule-ico">📵</span><div><strong>Нет гаджетов</strong><p>Телефоны убираем. Мы здесь — чтобы быть здесь.</p></div></div>
-      <div class="rule-item yes"><span class="rule-ico">🔄</span><div><strong>Ротация функций</strong><p>Каждый за 5 дней пройдёт через все роли: шеф кухни, физорг, ведущий медитации.</p></div></div>
-      <div class="rule-item yes"><span class="rule-ico">🌿</span><div><strong>Уважение к природе</strong><p>Мусор уносим с собой. В конце — лагерь чище чем когда пришли.</p></div></div>
+  <!-- 4 -->
+  <div class="page-card">
+    <div class="card-top"><span class="card-num">04</span></div>
+    <div class="card-icon">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+        <path d="M4 36 L20 8 L36 36 Z"/>
+        <path d="M14 36 Q20 28 26 36"/>
+        <line x1="20" y1="8" x2="20" y2="14"/>
+      </svg>
     </div>
-  </div>
-</section>
-
-<!-- ЧЕК-ЛИСТ -->
-<section class="section" id="checklist">
-  <div class="container reveal">
-    <div class="section-badge">🎒 Список вещей</div>
-    <h2 class="section-title">Что взять с собой</h2>
-    <p class="section-sub">Нажмите на предмет — отметьте как собранный</p>
-    <div class="check-progress">
-      <div class="check-bar-bg"><div class="check-bar" id="cbar"></div></div>
-      <p id="ccount">Собрано: 0 из 15</p>
-    </div>
-    <div class="check-grid">
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Дождевик</strong><p>Лёгкий, компактный — в рюкзак</p></div><span class="must">ОБЯЗАТЕЛЬНО</span></div>
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Резиновые сапоги</strong><p>Для дождя, грязи и утренней росы</p></div><span class="must">ОБЯЗАТЕЛЬНО</span></div>
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Костюм + военный экип</strong><p>Прочный, не жалко испачкать</p></div><span class="must">ОБЯЗАТЕЛЬНО</span></div>
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Свитер / флиска</strong><p>Ночи у костра бывают прохладными</p></div><span class="must">ОБЯЗАТЕЛЬНО</span></div>
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Носки шерстяные</strong><p>Греют даже мокрыми</p></div><span class="must">ОБЯЗАТЕЛЬНО</span></div>
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Носки обычные — 2 пары</strong><p>Менять ежедневно</p></div></div>
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Нательное бельё</strong><p>С запасом на каждый день</p></div></div>
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Купальник / плавки</strong><p>Купаемся каждый день</p></div></div>
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Шорты</strong><p>Для жаркого дня и лагеря</p></div></div>
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Шапка + кепка + панама</strong><p>Шапка — от холода, панама — от солнца</p></div></div>
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Кроссовки</strong><p>Основная обувь для маршрута</p></div></div>
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Тапочки / сланцы</strong><p>Для лагеря и купания</p></div></div>
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Мыльные принадлежности</strong><p>Мыло, зубная щётка, дезодорант</p></div><span class="must">ОБЯЗАТЕЛЬНО</span></div>
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Полотенца — 2 шт</strong><p>Для тела и для лица</p></div><span class="must">ОБЯЗАТЕЛЬНО</span></div>
-      <div class="check-item" onclick="toggleCheck(this)"><span class="cbox">☐</span><div><strong>Ножницы для ногтей</strong><p>5 дней — ногти вырастут</p></div></div>
-    </div>
-    <button class="reset-check" onclick="resetChecks()">↺ Сбросить всё</button>
-  </div>
-</section>
-
-<!-- СТОИМОСТЬ -->
-<section class="section" id="pricing" style="background:var(--cream)">
-  <div class="container reveal">
-    <div class="section-badge">💰 Стоимость</div>
-    <h2 class="section-title">Выберите формат</h2>
-    <p class="section-sub">Всё снаряжение и питание включены</p>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <div class="days">3 дня</div>
-        <div class="price"><span>₽</span>33 000</div>
-        <div class="desc">Короткий интенсив</div>
-        <ul>
-          <li>Горячее питание</li>
-          <li>Всё снаряжение</li>
-          <li>Медитации и тренинги</li>
-          <li>Купание и волейбол</li>
-        </ul>
-        <a href="https://t.me/proztas" class="btn-primary" target="_blank" style="display:block;text-align:center">Записаться</a>
+    <div class="card-body">
+      <div class="card-title">Лагерь для взрослых</div>
+      <p class="card-desc">«Всё как в детстве — только без родителей». День в лагере, фотополоса, что включено, правила, стоимость, FAQ.</p>
+      <div class="card-keywords">
+        <span class="kw">лагерь для взрослых</span>
+        <span class="kw">палаточный лагерь</span>
+        <span class="kw">лагерь Волга</span>
+        <span class="kw">лагерь лето 2026</span>
       </div>
-      <div class="price-card featured">
-        <div class="days">5 дней ★</div>
-        <div class="price"><span>₽</span>46 000</div>
-        <div class="desc">Полная перезагрузка</div>
-        <ul>
-          <li>Горячее питание</li>
-          <li>Всё снаряжение</li>
-          <li>Все тренинги</li>
-          <li>День молчания</li>
-          <li>Ночной «Сбитый лётчик»</li>
-        </ul>
-        <a href="https://t.me/proztas" class="btn-primary" target="_blank" style="display:block;text-align:center">Записаться</a>
+      <a href="palatochnyy-lager-vzroslye.html" class="card-link">
+        Открыть страницу
+        <svg width="16" height="8" viewBox="0 0 16 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><line x1="0" y1="4" x2="14" y2="4"/><polyline points="10,1 14,4 10,7"/></svg>
+      </a>
+    </div>
+    <div class="card-status"><div class="status-dot"></div>Готово · palatochnyy-lager-vzroslye.html</div>
+  </div>
+
+  <!-- 5 -->
+  <div class="page-card">
+    <div class="card-top"><span class="card-num">05</span></div>
+    <div class="card-icon">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+        <line x1="4" y1="36" x2="36" y2="36"/>
+        <line x1="4" y1="36" x2="4" y2="4"/>
+        <polyline points="4,28 12,16 20,22 30,8 36,14"/>
+        <circle cx="12" cy="16" r="2.5" fill="#B8923A"/>
+        <circle cx="20" cy="22" r="2.5" fill="#B8923A"/>
+        <circle cx="30" cy="8" r="2.5" fill="#B8923A"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Тренинги и личностный рост</div>
+      <p class="card-desc">«Не теория — живой опыт». 4 тренинга, механика изменений, сравнение с обычными тренингами, для кого, FAQ.</p>
+      <div class="card-keywords">
+        <span class="kw">тренинг личностного роста</span>
+        <span class="kw">тренинг на природе</span>
+        <span class="kw">горячий стул тренинг</span>
       </div>
+      <a href="trening-v-lesu.html" class="card-link">
+        Открыть страницу
+        <svg width="16" height="8" viewBox="0 0 16 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><line x1="0" y1="4" x2="14" y2="4"/><polyline points="10,1 14,4 10,7"/></svg>
+      </a>
+    </div>
+    <div class="card-status"><div class="status-dot"></div>Готово · trening-v-lesu.html</div>
+  </div>
+
+  <!-- 6 -->
+  <div class="page-card">
+    <div class="card-top"><span class="card-num">06</span></div>
+    <div class="card-icon">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+        <rect x="6" y="10" width="28" height="24" rx="1"/>
+        <line x1="6" y1="18" x2="34" y2="18"/>
+        <line x1="14" y1="6" x2="14" y2="14"/>
+        <line x1="26" y1="6" x2="26" y2="14"/>
+        <line x1="12" y1="24" x2="20" y2="24"/>
+        <line x1="12" y1="28" x2="24" y2="28"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Фотогалерея + Организатор</div>
+      <p class="card-desc">Masonry-галерея с фильтрами, лайтбокс, блок Станислава с биографией и фото. Все изображения встроены в файл.</p>
+      <div class="card-keywords">
+        <span class="kw">фото ретрита</span>
+        <span class="kw">живой лес фото</span>
+        <span class="kw">организатор ретрита</span>
+      </div>
+      <a href="gallery.html" class="card-link">
+        Открыть страницу
+        <svg width="16" height="8" viewBox="0 0 16 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><line x1="0" y1="4" x2="14" y2="4"/><polyline points="10,1 14,4 10,7"/></svg>
+      </a>
+    </div>
+    <div class="card-status"><div class="status-dot"></div>Готово · gallery.html</div>
+  </div>
+
+  <!-- 7 -->
+  <div class="page-card">
+    <div class="card-top">
+      <span class="card-num">07</span>
+      <span class="card-badge">Интерактив</span>
+    </div>
+    <div class="card-icon">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+        <rect x="6" y="4" width="28" height="32" rx="2"/>
+        <line x1="12" y1="13" x2="28" y2="13"/>
+        <line x1="12" y1="18" x2="28" y2="18"/>
+        <line x1="12" y1="23" x2="22" y2="23"/>
+        <rect x="10" y="28" width="8" height="4" rx="1"/>
+        <line x1="10" y1="9" x2="10" y2="4"/>
+        <line x1="30" y1="9" x2="30" y2="4"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Памятка участника</div>
+      <p class="card-desc">Интерактивный чек-лист вещей. Прогресс-бар, категории, отметка галочкой, состояние сохраняется в браузере. Советы по сборке рюкзака.</p>
+      <div class="card-keywords">
+        <span class="kw">список вещей ретрит</span>
+        <span class="kw">что взять в поход</span>
+        <span class="kw">памятка участника</span>
+      </div>
+      <a href="pamyatka.html" class="card-link">
+        Открыть страницу
+        <svg width="16" height="8" viewBox="0 0 16 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><line x1="0" y1="4" x2="14" y2="4"/><polyline points="10,1 14,4 10,7"/></svg>
+      </a>
+    </div>
+    <div class="card-status"><div class="status-dot"></div>Готово · pamyatka.html</div>
+  </div>
+
+  <!-- 8 -->
+  <div class="page-card">
+    <div class="card-top"><span class="card-num">08</span></div>
+    <div class="card-icon">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+        <circle cx="20" cy="20" r="16"/>
+        <circle cx="20" cy="20" r="8"/>
+        <circle cx="20" cy="20" r="3" fill="#B8923A"/>
+        <line x1="20" y1="4" x2="20" y2="12"/>
+        <line x1="20" y1="28" x2="20" y2="36"/>
+        <line x1="4" y1="20" x2="12" y2="20"/>
+        <line x1="28" y1="20" x2="36" y2="20"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Перезагрузка от города</div>
+      <p class="card-desc">Для выгоревших. Симптомы, 5 слоёв отдыха по дням, эффекты, что включено, стоимость, FAQ. Hero — фото участников у Волги.</p>
+      <div class="card-keywords">
+        <span class="kw">перезагрузка от города</span>
+        <span class="kw">отдых без телефона</span>
+        <span class="kw">выгорание отдых</span>
+      </div>
+      <a href="perezagruzka-ot-goroda.html" class="card-link">Открыть страницу <svg width="16" height="8" viewBox="0 0 16 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><line x1="0" y1="4" x2="14" y2="4"/><polyline points="10,1 14,4 10,7"/></svg></a>
+    </div>
+    <div class="card-status"><div class="status-dot"></div>Готово · perezagruzka-ot-goroda.html</div>
+  </div>
+
+  <!-- 9 -->
+  <div class="page-card">
+    <div class="card-top">
+      <span class="card-num">09</span>
+      <span class="card-badge">Сезонная</span>
+    </div>
+    <div class="card-icon">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+        <circle cx="20" cy="16" r="8"/>
+        <line x1="20" y1="4" x2="20" y2="8"/>
+        <line x1="20" y1="24" x2="20" y2="28"/>
+        <line x1="8" y1="16" x2="12" y2="16"/>
+        <line x1="28" y1="16" x2="32" y2="16"/>
+        <path d="M4 36 Q20 28 36 36"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Лето на Волге 2026</div>
+      <p class="card-desc">Сезонная страница с тремя заездами — 15 июня, 4 июля, 18 июля. Место, фотосетка, все форматы со ссылками, как добраться.</p>
+      <div class="card-keywords">
+        <span class="kw">лето на Волге 2026</span>
+        <span class="kw">отдых Волга июнь июль</span>
+        <span class="kw">ретрит лето 2026</span>
+      </div>
+      <a href="leto-na-volge-2026.html" class="card-link">Открыть страницу <svg width="16" height="8" viewBox="0 0 16 8" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><line x1="0" y1="4" x2="14" y2="4"/><polyline points="10,1 14,4 10,7"/></svg></a>
+    </div>
+    <div class="card-status"><div class="status-dot"></div>Готово · leto-na-volge-2026.html</div>
+  </div>
+
+</div>
+
+<!-- SECTION LABEL -->
+<div class="section-label">Техническая информация</div>
+
+<!-- STRUCTURE -->
+<div class="structure">
+  <div class="str-card">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+      <rect x="3" y="3" width="18" height="18" rx="2"/>
+      <line x1="3" y1="9" x2="21" y2="9"/>
+      <line x1="9" y1="9" x2="9" y2="21"/>
+    </svg>
+    <div>
+      <strong>Структура файлов</strong>
+      <p>Все HTML-файлы кладутся в корень сайта. Галерея (gallery.html) должна лежать рядом с фото или использовать встроенные base64-изображения.</p>
     </div>
   </div>
-</section>
-
-<!-- О НАС -->
-<section class="section" id="about">
-  <div class="container reveal">
-    <div class="section-badge">🌲 О нас</div>
-    <h2 class="section-title">Зачем мы идём в лес</h2>
-    <p class="section-sub">Поход — это не турпоездка. Это встреча с собой.</p>
-    <div class="about-grid">
-      <div class="about-item"><h3>🔍 Словиться с собой</h3><p>Без масок и привычных ролей. В лесу не соврёшь ни себе ни другим.</p></div>
-      <div class="about-item"><h3>🌊 Встретиться с реальностью</h3><p>Такой, какая она есть. Костёр либо горит, либо нет.</p></div>
-      <div class="about-item"><h3>⚡ Пройти через трудности</h3><p>Столкнуться с внутренними противоречиями и выйти с другой стороны.</p></div>
-      <div class="about-item"><h3>🤝 Живые знакомства</h3><p>Люди с которыми делил костёр и дождь становятся настоящими.</p></div>
-      <div class="about-item"><h3>✨ Новый опыт</h3><p>5 дней без телефона — и ты узнаёшь о себе больше чем за последний год.</p></div>
-      <div class="about-item"><h3>🔥 Внести свой вклад</h3><p>Каждый участник — функционер. Лагерь строим вместе.</p></div>
+  <div class="str-card">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+      <circle cx="12" cy="12" r="9"/>
+      <line x1="12" y1="3" x2="12" y2="21"/>
+      <path d="M3 12 Q12 8 21 12"/>
+      <path d="M3 12 Q12 16 21 12"/>
+    </svg>
+    <div>
+      <strong>URL-адреса страниц</strong>
+      <p>Меню настроено под пути: /retrit-na-prirode/ /meditacii-na-prirode/ /korporativnyy-vyyezd/ /palatochnyy-lager-vzroslye/ /trening-v-lesu/ /gallery/ /pamyatka/</p>
     </div>
   </div>
-</section>
+  <div class="str-card">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+      <path d="M12 2 L20 7 L20 17 L12 22 L4 17 L4 7 Z"/>
+      <line x1="12" y1="2" x2="12" y2="22"/>
+      <line x1="4" y1="7" x2="20" y2="17"/>
+      <line x1="20" y1="7" x2="4" y2="17"/>
+    </svg>
+    <div>
+      <strong>Подключение шрифтов</strong>
+      <p>Google Fonts — Cormorant Garamond + Jost. Нужен интернет при открытии. Для автономной работы шрифты можно скачать и подключить локально.</p>
+    </div>
+  </div>
+  <div class="str-card">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+      <rect x="5" y="2" width="14" height="20" rx="2"/>
+      <line x1="9" y1="7" x2="15" y2="7"/>
+      <line x1="9" y1="11" x2="15" y2="11"/>
+      <line x1="9" y1="15" x2="12" y2="15"/>
+    </svg>
+    <div>
+      <strong>SEO-готовность</strong>
+      <p>Каждая страница имеет уникальный title и meta description с ключевыми запросами. Структура заголовков H1–H3 оптимизирована под Google и Яндекс.</p>
+    </div>
+  </div>
+  <div class="str-card">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+      <rect x="5" y="2" width="10" height="20" rx="2"/>
+      <line x1="8" y1="6" x2="12" y2="6"/>
+      <line x1="8" y1="10" x2="12" y2="10"/>
+      <circle cx="10" cy="16" r="2"/>
+    </svg>
+    <div>
+      <strong>Мобильная адаптация</strong>
+      <p>Все страницы полностью адаптированы. Проверено на ширинах 375px, 414px, 768px, 1024px, 1440px. Меню — бургер с overlay.</p>
+    </div>
+  </div>
+  <div class="str-card">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+      <path d="M12 3 L20 7.5 L20 16.5 L12 21 L4 16.5 L4 7.5 Z"/>
+      <polyline points="7,12 10,15 17,9"/>
+    </svg>
+    <div>
+      <strong>Все страницы готовы</strong>
+      <p>Перезагрузка от города и Лето на Волге 2026 — готовы. Сайт полностью укомплектован. Можно загружать на хостинг.</p>
+    </div>
+  </div>
+</div>
 
-<footer>
-  <div class="footer-logo">🌲 Живой Лес</div>
-  <ul class="footer-nav">
-    <li><a href="#program">Программа</a></li>
-    <li><a href="#menu">Меню</a></li>
-    <li><a href="#schedule">Распорядок</a></li>
-    <li><a href="#checklist">Вещи</a></li>
-    <li><a href="#pricing">Стоимость</a></li>
-    <li><a href="https://t.me/zhivoy_les" target="_blank">@zhivoy_les</a></li>
-    <li><a href="https://t.me/proztas" target="_blank">Записаться</a></li>
-  </ul>
-  <p class="footer-copy">Берег Волги · Ярославль · Тутаевский район · 15 июня 2026</p>
-</footer>
+<!-- FOOTER -->
+<div class="dash-footer">
+  <div class="logo" style="font-size:18px">Живой<span style="color:var(--gold)">Лес</span></div>
+  <p>9 из 9 страниц готово · Берег Волги · Ярославль · 2026</p>
+  <a href="https://t.me/zhivoy_les">@zhivoy_les</a>
+</div>
 
-<script>
-function toggleMenu(){document.getElementById('navLinks').classList.toggle('open')}
-function closeMenu(){document.getElementById('navLinks').classList.remove('open')}
-
-function showDay(n){
-  document.querySelectorAll('.day-menu').forEach(d=>d.classList.remove('active'));
-  document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('day'+n).classList.add('active');
-  document.querySelectorAll('.mtab')[n-1].classList.add('active');
-}
-
-function toggleCheck(el){
-  el.classList.toggle('done');
-  el.querySelector('.cbox').textContent=el.classList.contains('done')?'✓':'☐';
-  updateProgress();
-}
-
-function updateProgress(){
-  const total=document.querySelectorAll('.check-item').length;
-  const done=document.querySelectorAll('.check-item.done').length;
-  document.getElementById('cbar').style.width=(done/total*100)+'%';
-  document.getElementById('ccount').textContent='Собрано: '+done+' из '+total;
-}
-
-function resetChecks(){
-  document.querySelectorAll('.check-item').forEach(el=>{
-    el.classList.remove('done');
-    el.querySelector('.cbox').textContent='☐';
-  });
-  updateProgress();
-}
-
-const reveals=document.querySelectorAll('.reveal');
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
-},{threshold:0.08});
-reveals.forEach(r=>io.observe(r));
-</script>
 </body>
 </html>

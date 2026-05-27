@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тренинги и личностный рост — Живой Лес | Волга, Ярославль</title>
+<meta name="description" content="Практические тренинги на природе — горячий стул, сбитый лётчик, работа с собой в лесу. Ярославль, Волга. Не теория — живой опыт.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bark:#1E1209;--moss:#2E3D22;--earth:#5C3D1E;--stone:#8A7968;
+  --mist:#C4B9A8;--cream:#F5F0E8;--gold:#B8923A;--gold-light:#D4AA55;
+  --white:#FDFBF7;
+  --ff-serif:'Cormorant Garamond',Georgia,serif;
+  --ff-sans:'Jost',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-sans);background:var(--cream);color:var(--bark);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* MENU */
+.menu-overlay{position:fixed;inset:0;z-index:200;background:var(--bark);display:flex;flex-direction:column;padding:0 48px 60px;transform:translateX(-100%);transition:transform 0.55s cubic-bezier(0.77,0,0.18,1);overflow-y:auto}
+.menu-overlay.open{transform:translateX(0)}
+.menu-top{display:flex;align-items:center;justify-content:space-between;padding:24px 0 48px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:48px}
+.menu-logo{font-family:var(--ff-serif);font-size:22px;color:var(--cream);text-decoration:none}
+.menu-logo span{color:var(--gold)}
+.menu-close{background:none;border:none;cursor:pointer;padding:8px}
+.menu-nav a{display:block;font-family:var(--ff-serif);font-size:clamp(24px,5vw,44px);font-weight:300;color:rgba(245,240,232,0.4);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
+.menu-nav a:hover{color:var(--cream)}
+.menu-nav a.active{color:var(--gold)}
+.menu-meta{margin-top:36px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,185,168,0.3)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 48px;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s}
+nav.scrolled{background:rgba(20,10,5,0.93);backdrop-filter:blur(16px);padding:13px 48px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.nav-logo{font-family:var(--ff-serif);font-size:20px;color:var(--cream);text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:28px}
+.nav-cta{font-family:var(--ff-sans);font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,146,58,0.45);padding:9px 22px;text-decoration:none;transition:all 0.2s}
+.nav-cta:hover{background:var(--gold);color:var(--bark)}
+.burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:4px}
+.burger span{display:block;width:24px;height:1px;background:var(--cream)}
+
+/* HERO */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--bark)}
+.hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 30%,rgba(92,61,30,0.3) 0%,transparent 65%)}
+.hero-line{position:absolute;top:0;bottom:0;left:48px;width:1px;background:linear-gradient(to bottom,transparent,rgba(184,146,58,0.25) 30%,rgba(184,146,58,0.25) 70%,transparent)}
+.hero-content{position:relative;z-index:2;padding:0 80px 80px 80px;max-width:860px}
+.hero-label{display:inline-flex;align-items:center;gap:14px;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:32px}
+.hero-label::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+.hero h1{font-family:var(--ff-serif);font-size:clamp(48px,7.5vw,96px);font-weight:300;line-height:1.04;color:var(--cream);margin-bottom:28px}
+.hero h1 em{font-style:italic;color:var(--gold-light)}
+.hero-sub{font-size:16px;font-weight:300;line-height:1.85;color:rgba(196,185,168,0.8);max-width:500px;margin-bottom:52px}
+.hero-actions{display:flex;align-items:center;gap:36px;flex-wrap:wrap}
+.btn-primary{display:inline-block;background:var(--gold);color:var(--bark);font-family:var(--ff-sans);font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;text-decoration:none;padding:17px 44px;transition:all 0.25s}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-ghost{font-family:var(--ff-sans);font-size:12px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:rgba(196,185,168,0.55);text-decoration:none;display:flex;align-items:center;gap:12px;transition:color 0.2s}
+.btn-ghost:hover{color:var(--cream)}
+.hero-corner{position:absolute;bottom:56px;right:48px;z-index:2;text-align:right}
+.hero-corner p{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,185,168,0.3);line-height:2.2}
+
+/* COMMON */
+.label{display:inline-flex;align-items:center;gap:14px;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.label::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+h2{font-family:var(--ff-serif);font-size:clamp(32px,4vw,54px);font-weight:300;line-height:1.12;color:var(--bark);margin-bottom:16px}
+h2 em{font-style:italic;color:var(--earth)}
+.lead{font-size:16px;font-weight:300;line-height:1.85;color:var(--stone)}
+.sep{width:40px;height:1px;background:var(--gold);margin:24px 0}
+
+/* WHY FOREST */
+.why{background:var(--white);padding:0}
+.why-grid{display:grid;grid-template-columns:1fr 1fr}
+.why-left{padding:100px 80px;display:flex;flex-direction:column;justify-content:center}
+.why-right{background:var(--moss);padding:80px 64px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.why-right::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border:1px solid rgba(184,146,58,0.08);border-radius:50%}
+.why-right::after{content:'';position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;border:1px solid rgba(184,146,58,0.06);border-radius:50%}
+.why-items{margin-top:44px;display:flex;flex-direction:column;gap:0}
+.why-item{display:grid;grid-template-columns:52px 1fr;padding:22px 0;border-top:1px solid rgba(138,121,104,0.12);align-items:start}
+.why-item:last-child{border-bottom:1px solid rgba(138,121,104,0.12)}
+.why-n{font-family:var(--ff-serif);font-style:italic;font-size:14px;color:var(--gold);padding-top:3px}
+.why-item strong{display:block;font-size:14px;font-weight:500;color:var(--bark);margin-bottom:5px}
+.why-item p{font-size:13px;font-weight:300;color:var(--stone);line-height:1.7}
+.why-quotes{position:relative;z-index:2;display:flex;flex-direction:column;gap:40px}
+.why-quote{border-left:1px solid rgba(184,146,58,0.4);padding-left:24px}
+.why-quote p{font-family:var(--ff-serif);font-size:20px;font-weight:300;font-style:italic;color:var(--cream);line-height:1.5;margin-bottom:12px}
+.why-quote cite{font-family:var(--ff-sans);font-style:normal;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(184,146,58,0.7)}
+
+/* TRAININGS */
+.trainings{background:var(--cream);padding:100px 80px}
+.tr-inner{max-width:1200px;margin:0 auto}
+.tr-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:72px}
+.tr-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(138,121,104,0.15)}
+.tr-card{background:var(--white);padding:52px 44px;position:relative;overflow:hidden;transition:background 0.3s}
+.tr-card:hover{background:#f7f2ea}
+.tr-card.accent{background:var(--bark)}
+.tr-card.accent:hover{background:#261608}
+.tr-num{font-family:var(--ff-serif);font-size:80px;font-weight:300;color:rgba(184,146,58,0.07);position:absolute;top:16px;right:24px;line-height:1}
+.tr-card.accent .tr-num{color:rgba(184,146,58,0.1)}
+.tr-gfx{margin-bottom:28px}
+.tr-card h3{font-family:var(--ff-serif);font-size:26px;font-weight:400;color:var(--bark);margin-bottom:14px;line-height:1.2}
+.tr-card.accent h3{color:var(--cream)}
+.tr-card p{font-size:13px;font-weight:300;color:var(--stone);line-height:1.85}
+.tr-card.accent p{color:rgba(196,185,168,0.65)}
+.tr-tag{display:inline-block;margin-top:20px;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,146,58,0.3);padding:5px 14px}
+
+/* PROCESS */
+.process{background:var(--bark);padding:100px 80px}
+.proc-inner{max-width:1100px;margin:0 auto}
+.proc-top{margin-bottom:72px}
+.proc-top .label{color:var(--gold)}
+.proc-top h2{color:var(--cream)}
+.proc-top h2 em{color:var(--gold-light)}
+.proc-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06)}
+.step{background:rgba(255,255,255,0.02);padding:44px 36px;position:relative}
+.step::before{content:'';position:absolute;top:44px;right:-1px;width:1px;height:40px;background:rgba(184,146,58,0.2)}
+.step:last-child::before{display:none}
+.step-n{font-family:var(--ff-serif);font-size:48px;font-weight:300;font-style:italic;color:rgba(184,146,58,0.2);line-height:1;margin-bottom:20px;display:block}
+.step h3{font-family:var(--ff-serif);font-size:20px;font-weight:300;color:var(--cream);margin-bottom:10px;line-height:1.3}
+.step p{font-size:13px;font-weight:300;color:rgba(196,185,168,0.55);line-height:1.75}
+
+/* DIFFERENCE */
+.diff{background:var(--white);padding:100px 80px}
+.diff-inner{max-width:1100px;margin:0 auto}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(138,121,104,0.15);margin-top:64px}
+.diff-col{background:var(--white);padding:52px 44px}
+.diff-col.dark{background:var(--cream)}
+.diff-col-label{font-size:10px;letter-spacing:5px;text-transform:uppercase;margin-bottom:32px;display:block}
+.diff-col:first-child .diff-col-label{color:var(--stone)}
+.diff-col.dark .diff-col-label{color:var(--gold)}
+.diff-items{display:flex;flex-direction:column;gap:0}
+.diff-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(138,121,104,0.1);align-items:flex-start;font-size:14px;font-weight:300;color:var(--stone);line-height:1.6}
+.diff-col.dark .diff-item{color:var(--bark)}
+.diff-item::before{content:'';display:block;width:20px;height:1px;background:rgba(138,121,104,0.4);flex-shrink:0;margin-top:10px}
+.diff-col.dark .diff-item::before{background:var(--gold)}
+
+/* FOR WHOM */
+.forwhom{background:var(--cream);padding:100px 80px}
+.fw-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.fw-list{margin-top:44px;display:flex;flex-direction:column;gap:0}
+.fw-item{display:grid;grid-template-columns:52px 1fr;padding:22px 0;border-top:1px solid rgba(138,121,104,0.12);align-items:start}
+.fw-item:last-child{border-bottom:1px solid rgba(138,121,104,0.12)}
+.fw-n{font-family:var(--ff-serif);font-style:italic;font-size:14px;color:var(--gold);padding-top:3px}
+.fw-item strong{display:block;font-size:14px;font-weight:500;color:var(--bark);margin-bottom:5px}
+.fw-item p{font-size:13px;font-weight:300;color:var(--stone);line-height:1.7}
+.fw-box{background:var(--bark);padding:52px 44px;position:relative;overflow:hidden}
+.fw-box::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border:1px solid rgba(184,146,58,0.1);border-radius:50%}
+.fw-box h3{font-family:var(--ff-serif);font-size:28px;font-weight:300;color:var(--cream);margin-bottom:16px;line-height:1.3;position:relative;z-index:2}
+.fw-box h3 em{font-style:italic;color:var(--gold-light)}
+.fw-box p{font-size:14px;font-weight:300;color:rgba(196,185,168,0.65);line-height:1.85;margin-bottom:32px;position:relative;z-index:2}
+.fw-box .btn-primary{position:relative;z-index:2;display:inline-block}
+
+/* FAQ */
+.faq{background:var(--white);padding:100px 80px}
+.faq-inner{max-width:780px;margin:0 auto}
+.faq-list{margin-top:52px}
+.faq-item{border-top:1px solid rgba(138,121,104,0.18)}
+.faq-item:last-child{border-bottom:1px solid rgba(138,121,104,0.18)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;cursor:pointer;user-select:none}
+.faq-q span{font-family:var(--ff-serif);font-size:19px;font-weight:300;color:var(--bark);line-height:1.3}
+.faq-toggle{width:30px;height:30px;flex-shrink:0;border:1px solid rgba(138,121,104,0.3);display:flex;align-items:center;justify-content:center;transition:transform 0.35s,border-color 0.2s}
+.faq-item.open .faq-toggle{transform:rotate(45deg);border-color:var(--gold)}
+.faq-a{font-size:14px;font-weight:300;color:var(--stone);line-height:1.85;max-height:0;overflow:hidden;transition:max-height 0.45s ease,padding 0.3s}
+.faq-item.open .faq-a{max-height:220px;padding-bottom:22px}
+
+/* CTA */
+.cta{background:var(--bark);padding:120px 80px;text-align:center;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(46,61,34,0.5) 0%,transparent 70%)}
+.cta>*{position:relative;z-index:2}
+.cta h2{color:var(--cream)}
+.cta h2 em{color:var(--gold-light)}
+.cta .lead{color:rgba(196,185,168,0.6);max-width:480px;margin:0 auto 44px}
+.cta-pill{display:inline-block;font-size:10px;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,146,58,0.3);padding:11px 26px;margin-bottom:36px}
+
+/* FOOTER */
+footer{background:#120a04;padding:36px 80px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;border-top:1px solid rgba(255,255,255,0.04)}
+.foot-logo{font-family:var(--ff-serif);font-size:18px;color:var(--cream);text-decoration:none}
+.foot-logo span{color:var(--gold)}
+footer p{font-size:11px;color:rgba(196,185,168,0.28);letter-spacing:1px}
+footer a.tg{font-size:11px;color:var(--gold);text-decoration:none;letter-spacing:2px}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .tr-grid{grid-template-columns:1fr}
+  .proc-steps{grid-template-columns:repeat(2,1fr)}
+  .step::before{display:none}
+}
+@media(max-width:900px){
+  nav{padding:14px 20px}
+  nav.scrolled{padding:11px 20px}
+  .nav-cta{display:none}
+  .hero-line{left:20px}
+  .hero-content{padding:0 24px 56px 40px}
+  .hero-corner{right:20px;bottom:40px}
+  .why-grid{grid-template-columns:1fr}
+  .why-left{padding:70px 24px}
+  .why-right{padding:60px 24px}
+  .trainings,.diff,.forwhom,.faq{padding:70px 24px}
+  .tr-header{grid-template-columns:1fr;gap:24px}
+  .process{padding:70px 24px}
+  .proc-steps{grid-template-columns:1fr}
+  .diff-grid{grid-template-columns:1fr}
+  .fw-inner{grid-template-columns:1fr;gap:48px}
+  .cta{padding:80px 24px}
+  footer{padding:28px 24px}
+  .menu-overlay{padding:0 20px 48px}
+}
+@media(max-width:600px){
+  .hero h1{font-size:42px}
+}
+</style>
+</head>
+<body>
+
+<!-- MENU -->
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-top">
+    <a href="index.html" class="menu-logo">Живой<span>Лес</span></a>
+    <button class="menu-close" id="menuClose">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(245,240,232,0.5)" stroke-width="1" stroke-linecap="round">
+        <line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/>
+      </svg>
+    </button>
+  </div>
+  <nav class="menu-nav">
+    <a href="retrit-na-prirode.html">Ретрит на природе</a>
+    <a href="perezagruzka-ot-goroda.html">Перезагрузка от города</a>
+    <a href="korporativnyy-vyyezd.html">Корпоративный выезд</a>
+    <a href="meditacii-na-prirode.html">Медитации на природе</a>
+    <a href="palatochnyy-lager-vzroslye.html">Лагерь для взрослых</a>
+    <a href="trening-v-lesu.html" class="active">Тренинги и рост</a>
+    <a href="leto-na-volge-2026.html">Лето на Волге 2026</a>
+    <a href="gallery.html">Фотогалерея</a>
+    <a href="pamyatka.html">Памятка участника</a>
+  </nav>
+  <p class="menu-meta">Берег Волги · Ярославль · 2026</p>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Живой<span>Лес</span></a>
+  <div class="nav-right">
+    <a href="https://t.me/proztas" class="nav-cta">Записаться</a>
+    <button class="burger" id="burgerBtn"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-line"></div>
+
+  <svg style="position:absolute;top:0;right:0;width:50%;height:100%;opacity:0.05;pointer-events:none" viewBox="0 0 540 900" fill="none">
+    <circle cx="270" cy="450" r="300" stroke="white" stroke-width="1"/>
+    <circle cx="270" cy="450" r="180" stroke="white" stroke-width="1"/>
+    <circle cx="270" cy="450" r="80" stroke="white" stroke-width="1"/>
+    <line x1="270" y1="0" x2="270" y2="900" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="450" x2="540" y2="450" stroke="white" stroke-width="1"/>
+    <line x1="30" y1="90" x2="510" y2="810" stroke="white" stroke-width="0.6"/>
+    <line x1="510" y1="90" x2="30" y2="810" stroke="white" stroke-width="0.6"/>
+  </svg>
+  <svg style="position:absolute;bottom:0;left:0;right:0;width:100%;height:180px;opacity:0.07;pointer-events:none" viewBox="0 0 1440 180" preserveAspectRatio="xMidYMax slice" fill="white">
+    <path d="M0 180 L0 110 L60 65 L120 110 L150 75 L210 20 L270 75 L300 45 L370 0 L440 45 L470 25 L540 70 L580 35 L650 5 L720 35 L750 15 L820 55 L880 20 L950 55 L980 35 L1050 75 L1110 35 L1180 80 L1250 40 L1310 90 L1380 55 L1440 100 L1440 180 Z"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-label">Тренинги и личностный рост · Волга</div>
+    <h1>Не теория.<br><em>Живой</em><br>опыт.</h1>
+    <p class="hero-sub">Тренинги в лесу работают иначе. Нет слайдов, нет кейсов. Есть костёр, группа живых людей — и ты сам.</p>
+    <div class="hero-actions">
+      <a href="https://t.me/proztas" class="btn-primary">Записаться</a>
+      <a href="#trainings" class="btn-ghost">
+        Тренинги
+        <svg width="20" height="10" viewBox="0 0 20 10" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><line x1="0" y1="5" x2="18" y2="5"/><polyline points="14,1 18,5 14,9"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-corner">
+    <p>15 июня 2026</p>
+    <p>5 дней</p>
+    <p>15 человек</p>
+  </div>
+</section>
+
+<!-- WHY FOREST -->
+<div class="why">
+  <div class="why-grid">
+    <div class="why-left">
+      <span class="label">Почему лес</span>
+      <h2>Природа —<br>лучший <em>тренажёр</em></h2>
+      <div class="sep"></div>
+      <p class="lead">В офисе можно притвориться. В лесу — нельзя. Когда нет телефона, статуса и привычной роли, остаётся только то, кто ты есть на самом деле.</p>
+      <ul class="why-items">
+        <li class="why-item">
+          <span class="why-n">I</span>
+          <div><strong>Нет маски</strong><p>Без привычного контекста мозг не знает, кем «надо» быть. Это создаёт пространство для настоящего.</p></div>
+        </li>
+        <li class="why-item">
+          <span class="why-n">II</span>
+          <div><strong>Группа как зеркало</strong><p>15 человек, которые видят тебя без фильтров, дают обратную связь точнее любого психолога.</p></div>
+        </li>
+        <li class="why-item">
+          <span class="why-n">III</span>
+          <div><strong>Реальные условия</strong><p>Дождь, усталость, ночной тренинг — это не метафора трудностей. Это настоящие трудности, здесь и сейчас.</p></div>
+        </li>
+        <li class="why-item">
+          <span class="why-n">IV</span>
+          <div><strong>Некуда убежать</strong><p>В отличие от однодневного тренинга — здесь нельзя уйти домой. Придётся встретиться с тем, что обычно избегаешь.</p></div>
+        </li>
+      </ul>
+    </div>
+    <div class="why-right">
+      <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.06" viewBox="0 0 400 600" fill="none">
+        <circle cx="200" cy="300" r="180" stroke="white" stroke-width="1"/>
+        <circle cx="200" cy="300" r="100" stroke="white" stroke-width="1"/>
+        <line x1="200" y1="0" x2="200" y2="600" stroke="white" stroke-width="1"/>
+        <line x1="0" y1="300" x2="400" y2="300" stroke="white" stroke-width="1"/>
+      </svg>
+      <div class="why-quotes">
+        <div class="why-quote">
+          <p>«Горячий стул — страшно. Но именно там я услышал о себе то, о чём давно догадывался, но боялся признать»</p>
+          <cite>— участник, 2024</cite>
+        </div>
+        <div class="why-quote">
+          <p>«Ночной тренинг показал кто я в команде под давлением. Это было неудобно. И очень полезно»</p>
+          <cite>— участница, 2023</cite>
+        </div>
+        <div class="why-quote">
+          <p>«После пяти дней без телефона я понял, от чего убегал. Лес не даёт спрятаться»</p>
+          <cite>— участник, 2024</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRAININGS -->
+<div class="trainings" id="trainings">
+  <div class="tr-inner">
+    <div class="tr-header">
+      <div>
+        <span class="label">Тренинги</span>
+        <h2>Четыре <em>практики</em><br>которые работают</h2>
+      </div>
+      <p class="lead">Каждый тренинг — не упражнение, а реальная ситуация. Результат виден сразу — и остаётся надолго.</p>
+    </div>
+    <div class="tr-grid">
+
+      <div class="tr-card accent">
+        <span class="tr-num">I</span>
+        <div class="tr-gfx">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#D4AA55" stroke-width="1" stroke-linecap="round">
+            <circle cx="22" cy="12" r="6"/>
+            <path d="M8 38 C8 28 36 28 36 38"/>
+            <line x1="22" y1="18" x2="22" y2="26"/>
+            <line x1="14" y1="22" x2="30" y2="22"/>
+            <circle cx="22" cy="22" r="14" stroke-dasharray="3 3" stroke="#B8923A"/>
+          </svg>
+        </div>
+        <h3>«Горячий стул»</h3>
+        <p>Участник садится в центр. Группа говорит — что в нём ценит и что мешает. Без оценок, без советов. Только честное наблюдение. Это самый сложный и самый ценный тренинг.</p>
+        <span class="tr-tag">Обратная связь</span>
+      </div>
+
+      <div class="tr-card">
+        <span class="tr-num">II</span>
+        <div class="tr-gfx">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+            <path d="M8 36 L8 22 L22 8 L36 22 L36 36"/>
+            <line x1="4" y1="36" x2="40" y2="36"/>
+            <line x1="16" y1="36" x2="16" y2="26"/>
+            <line x1="28" y1="36" x2="28" y2="26"/>
+            <line x1="16" y1="26" x2="28" y2="26"/>
+            <line x1="22" y1="8" x2="22" y2="4"/>
+            <line x1="18" y1="4" x2="26" y2="4"/>
+          </svg>
+        </div>
+        <h3>Ночной «Сбитый лётчик»</h3>
+        <p>Командный тренинг на выживание в ночных условиях. Группа принимает решения под давлением времени и неопределённости. Кто берёт ответственность? Кто ждёт команды? Кто саботирует?</p>
+        <span class="tr-tag">Лидерство · Команда</span>
+      </div>
+
+      <div class="tr-card">
+        <span class="tr-num">III</span>
+        <div class="tr-gfx">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+            <circle cx="22" cy="22" r="16"/>
+            <line x1="22" y1="6" x2="22" y2="14"/>
+            <line x1="22" y1="30" x2="22" y2="38"/>
+            <line x1="6" y1="22" x2="14" y2="22"/>
+            <line x1="30" y1="22" x2="38" y2="22"/>
+            <circle cx="22" cy="22" r="6"/>
+            <circle cx="22" cy="22" r="2" fill="#B8923A"/>
+          </svg>
+        </div>
+        <h3>«Найти флаг»</h3>
+        <p>Стратегическая игра на местности. Две команды, ограниченное время, неполная информация. Планирование, распределение ролей, принятие тактических решений в реальном времени.</p>
+        <span class="tr-tag">Стратегия · Доверие</span>
+      </div>
+
+      <div class="tr-card">
+        <span class="tr-num">IV</span>
+        <div class="tr-gfx">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#B8923A" stroke-width="1" stroke-linecap="round">
+            <path d="M22 6 C16 10 12 16 12 22 C12 30 16 36 22 38 C28 36 32 30 32 22 C32 16 28 10 22 6Z"/>
+            <line x1="22" y1="6" x2="22" y2="38"/>
+            <line x1="12" y1="22" x2="32" y2="22"/>
+            <path d="M14 13 Q22 17 30 13" stroke-dasharray="2 2"/>
+            <path d="M14 31 Q22 27 30 31" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+        <h3>Итоги у костра</h3>
+        <p>Ежевечерний круг рефлексии. Каждый говорит — что получил сегодня, что заметил в себе, что хочет изменить завтра. Формирует навык осознанности и честного самонаблюдения.</p>
+        <span class="tr-tag">Рефлексия · Осознанность</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<div class="process">
+  <div class="proc-inner">
+    <div class="proc-top">
+      <span class="label">Как это работает</span>
+      <h2>Механика <em>изменений</em></h2>
+      <div class="sep" style="background:rgba(184,146,58,0.4)"></div>
+      <p class="lead" style="color:rgba(196,185,168,0.6);max-width:560px">Личностный рост в лесу происходит не через лекции, а через четыре последовательных шага.</p>
+    </div>
+    <div class="proc-steps">
+      <div class="step">
+        <span class="step-n">I</span>
+        <h3>Выход из зоны комфорта</h3>
+        <p>Нет телефона, нет привычной роли. Первые сутки — дискомфорт. Именно здесь начинается настоящая работа.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">II</span>
+        <h3>Столкновение с собой</h3>
+        <p>Тренинги, группа, обратная связь — вы видите себя глазами других. Это неудобно и ценно одновременно.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">III</span>
+        <h3>Принятие и выбор</h3>
+        <p>Увидеть — это полдела. Дальше — выбор: остаться как есть или попробовать иначе. Лагерь даёт пространство для обоих.</p>
+      </div>
+      <div class="step">
+        <span class="step-n">IV</span>
+        <h3>Интеграция</h3>
+        <p>Вечерние круги и день молчания помогают осмыслить опыт — и унести его домой не как воспоминание, а как изменение.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIFFERENCE -->
+<div class="diff">
+  <div class="diff-inner">
+    <span class="label">Отличие</span>
+    <h2>Чем это отличается<br>от <em>обычного тренинга</em></h2>
+    <div class="diff-grid">
+      <div class="diff-col">
+        <span class="diff-col-label">Обычный тренинг</span>
+        <div class="diff-items">
+          <div class="diff-item">Теория, которую забываешь через неделю</div>
+          <div class="diff-item">Смоделированные ситуации и кейсы</div>
+          <div class="diff-item">Вечером идёшь домой — в привычный контекст</div>
+          <div class="diff-item">Фасилитатор ведёт и направляет</div>
+          <div class="diff-item">Обратная связь — вежливая и дипломатичная</div>
+          <div class="diff-item">Один-два дня, потом жизнь как прежде</div>
+        </div>
+      </div>
+      <div class="diff-col dark">
+        <span class="diff-col-label">Тренинг в лесу</span>
+        <div class="diff-items">
+          <div class="diff-item">Живой опыт, который прожит телом и эмоциями</div>
+          <div class="diff-item">Реальные трудности — дождь, усталость, неопределённость</div>
+          <div class="diff-item">5 дней в изменённом контексте — новые паттерны успевают закрепиться</div>
+          <div class="diff-item">Группа равных — нет авторитета, только честность</div>
+          <div class="diff-item">Обратная связь — прямая, без смягчений, от живых людей</div>
+          <div class="diff-item">Результат виден сразу и остаётся надолго</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOR WHOM -->
+<div class="forwhom">
+  <div class="fw-inner">
+    <div>
+      <span class="label">Для кого</span>
+      <h2>Кому это <em>нужно</em></h2>
+      <div class="sep"></div>
+      <ul class="fw-list">
+        <li class="fw-item">
+          <span class="fw-n">I</span>
+          <div><strong>Чувствуете, что стоите на месте</strong><p>Всё нормально — но ощущение что топчетесь на одном месте уже несколько лет.</p></div>
+        </li>
+        <li class="fw-item">
+          <span class="fw-n">II</span>
+          <div><strong>Знаете свои «слепые пятна», но не видите их</strong><p>Понимаете, что что-то мешает — но не можете это назвать. Группа поможет увидеть.</p></div>
+        </li>
+        <li class="fw-item">
+          <span class="fw-n">III</span>
+          <div><strong>Хотите понять как вас воспринимают</strong><p>Не через анонимные опросы, а через живой контакт с людьми, которые вас не знают заранее.</p></div>
+        </li>
+        <li class="fw-item">
+          <span class="fw-n">IV</span>
+          <div><strong>Устали от теоретических подходов</strong><p>Прочитали книги, прошли курсы. Хочется чего-то, что работает без наушников и ноутбука.</p></div>
+        </li>
+        <li class="fw-item">
+          <span class="fw-n">V</span>
+          <div><strong>Ищете новое сообщество</strong><p>Люди, с которыми делил ночной тренинг и костёр, становятся настоящими контактами — не соцсетевыми.</p></div>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <div class="fw-box">
+        <h3>Опыт не нужен.<br>Нужна <em>готовность</em></h3>
+        <p>Не важно были ли вы на тренингах раньше. Не важно насколько вы «работаете над собой». Важно одно — готовы ли вы к честному контакту с собой и с группой.</p>
+        <p style="margin-top:0;margin-bottom:32px;font-size:14px;font-weight:300;color:rgba(196,185,168,0.65);line-height:1.85">Если готовы — лес сделает остальное.</p>
+        <a href="https://t.me/proztas" class="btn-primary">Записаться</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq">
+  <div class="faq-inner">
+    <span class="label">Вопросы</span>
+    <h2>Часто<br><em>спрашивают</em></h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q"><span>Это психотерапия?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div></div>
+        <div class="faq-a">Нет. Это не терапия и не психологическое сопровождение. Это групповой опыт, тренинги и рефлексия. Если у вас есть острые психологические запросы — сначала к специалисту, потом к нам.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Можно ли отказаться от тренинга, который пугает?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div></div>
+        <div class="faq-a">Да. Никакого принуждения нет. Но по опыту — именно то, что пугает больше всего, даёт больше всего. Предлагаем попробовать, прежде чем отказываться.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Как долго сохраняется эффект?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div></div>
+        <div class="faq-a">Зависит от того, что вы делаете после. Участники, которые продолжают практиковать рефлексию и медитацию дома, говорят что изменения остаются. Те, кто сразу возвращаются в старый ритм — теряют часть эффекта. Лес даёт импульс — дальше ваша работа.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Что если «Горячий стул» окажется слишком жёстким?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div></div>
+        <div class="faq-a">Тренинг проводится в безопасном пространстве — без агрессии, без оценок, только наблюдения. Формат предполагает честность, но не жестокость. Группа к этому моменту уже несколько дней вместе — есть доверие.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Нужен ли опыт личной работы?</span><div class="faq-toggle"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div></div>
+        <div class="faq-a">Нет. Приходят и те, кто никогда не был на тренингах, и те, кто прошёл много всего. Важна не история опыта, а готовность к честному контакту — с собой и с группой.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <span class="label" style="display:inline-flex;justify-content:center">Следующий шаг</span>
+  <h2>Готов<br><em>встретиться с собой?</em></h2>
+  <div class="sep" style="margin:20px auto"></div>
+  <p class="lead">5 дней. Берег Волги. Четыре тренинга. Группа живых людей рядом.</p>
+  <div class="cta-pill">15 июня 2026 · 5 дней · 15 человек</div>
+  <br>
+  <a href="https://t.me/proztas" class="btn-primary">Записаться в Telegram</a>
+  <br><br>
+  <a href="https://t.me/zhivoy_les" style="color:rgba(196,185,168,0.3);font-size:11px;letter-spacing:3px;text-decoration:none;text-transform:uppercase">@zhivoy_les</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="foot-logo">Живой<span>Лес</span></a>
+  <p>Берег Волги · Тутаевский район · Ярославская область</p>
+  <a href="https://t.me/zhivoy_les" class="tg">@zhivoy_les</a>
+</footer>
+
+<script>
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>60));
+const burgerBtn=document.getElementById('burgerBtn');
+const menuOverlay=document.getElementById('menuOverlay');
+const menuClose=document.getElementById('menuClose');
+burgerBtn.addEventListener('click',()=>{menuOverlay.classList.add('open');document.body.style.overflow='hidden'});
+function closeMenu(){menuOverlay.classList.remove('open');document.body.style.overflow=''}
+menuClose.addEventListener('click',closeMenu);
+menuOverlay.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement;
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}});
+},{threshold:0.08});
+document.querySelectorAll('.tr-card,.step,.why-item,.fw-item,.diff-item,.why-quote').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(16px)';
+  el.style.transition='opacity 0.5s ease,transform 0.5s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
