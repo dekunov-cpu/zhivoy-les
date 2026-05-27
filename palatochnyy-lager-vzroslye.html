@@ -22,7 +22,7 @@ body{font-family:var(--ff-sans);background:var(--cream);color:var(--bark);-webki
 /* MENU */
 .menu-overlay{position:fixed;inset:0;z-index:200;background:var(--bark);display:flex;flex-direction:column;padding:0 48px 60px;transform:translateX(-100%);transition:transform 0.55s cubic-bezier(0.77,0,0.18,1);overflow-y:auto;overflow-x:hidden}
 .menu-overlay.open{transform:translateX(0)}
-.menu-top{display:flex;align-items:center;justify-content:space-between;padding:24px 0 56px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:16px;min-height:96px}
+.menu-top{display:flex;align-items:center;justify-content:flex-end;padding:20px 0 24px;margin-bottom:8px}
 .menu-logo{font-family:var(--ff-serif);font-size:22px;color:var(--cream);text-decoration:none}
 .menu-logo span{color:var(--gold)}
 .menu-close{background:none;border:none;cursor:pointer;padding:8px}
@@ -238,9 +238,7 @@ footer a.tg{font-size:11px;color:var(--gold);text-decoration:none;letter-spacing
 
 <!-- MENU -->
 <div class="menu-overlay" id="menuOverlay">
-  <div class="menu-top">
-    <a href="index.html" class="menu-logo">Живой<span>Лес</span></a>
-    <button class="menu-close" id="menuClose">
+  <div class="menu-top"><button class="menu-close" id="menuClose">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(245,240,232,0.5)" stroke-width="1" stroke-linecap="round">
         <line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/>
       </svg>
