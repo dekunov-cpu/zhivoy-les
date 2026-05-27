@@ -12,13 +12,13 @@
 :root{--bark:#1E1209;--moss:#2E3D22;--earth:#5C3D1E;--stone:#8A7968;--mist:#C4B9A8;--cream:#F5F0E8;--gold:#B8923A;--gold-light:#D4AA55;--white:#FDFBF7;--ff-serif:'Cormorant Garamond',Georgia,serif;--ff-sans:'Jost',sans-serif;}
 html{scroll-behavior:smooth}
 body{font-family:var(--ff-sans);background:var(--cream);color:var(--bark);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-.menu-overlay{position:fixed;inset:0;z-index:200;background:var(--bark);display:flex;flex-direction:column;padding:0 48px 60px;transform:translateX(-100%);transition:transform 0.55s cubic-bezier(0.77,0,0.18,1);overflow-y:auto}
+.menu-overlay{position:fixed;inset:0;z-index:200;background:var(--bark);display:flex;flex-direction:column;flex-wrap:nowrap;padding:0 48px 60px;transform:translateX(-100%);transition:transform 0.55s cubic-bezier(0.77,0,0.18,1);overflow-y:auto;overflow-x:hidden}
 .menu-overlay.open{transform:translateX(0)}
 .menu-top{display:flex;align-items:center;justify-content:space-between;padding:24px 0 48px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:48px}
 .menu-logo{font-family:var(--ff-serif);font-size:22px;color:var(--cream);text-decoration:none}
 .menu-logo span{color:var(--gold)}
 .menu-close{background:none;border:none;cursor:pointer;padding:8px}
-.menu-nav a{display:block;font-family:var(--ff-serif);font-size:clamp(24px,5vw,44px);font-weight:300;color:rgba(245,240,232,0.4);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
+.menu-nav a{display:block;width:100%;font-family:var(--ff-serif);font-size:clamp(22px,5vw,42px);font-weight:300;color:rgba(245,240,232,0.4);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s;white-space:normal;word-break:break-word}
 .menu-nav a:hover{color:var(--cream)}
 .menu-nav a.active{color:var(--gold)}
 .menu-meta{margin-top:36px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,185,168,0.3)}
@@ -180,6 +180,9 @@ footer a.tg{font-size:11px;color:var(--gold);text-decoration:none;letter-spacing
 .menu-nav a{display:block!important;width:100%!important;white-space:normal!important;font-size:clamp(22px,5vw,44px)!important;padding:12px 0!important;border-bottom:1px solid rgba(255,255,255,0.06)!important;color:rgba(245,240,232,0.4)!important;text-decoration:none!important;transition:color 0.2s!important}
 .menu-nav a:hover,.menu-nav a.active{color:var(--cream)!important}
 .menu-nav a.active{color:var(--gold)!important}
+
+.menu-nav{margin-top:8px}
+.menu-top{min-height:64px}
 </style>
 </head>
 <body>
