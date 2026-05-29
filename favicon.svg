@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#C9A84C"/>
+  <rect width="32" height="32" fill="url(#g)"/>
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8C76A"/>
+      <stop offset="100%" stop-color="#A07828"/>
+    </linearGradient>
+  </defs>
+  <text x="16" y="22" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="400" fill="#1E1209" opacity="0.85">ЛЕС</text>
+</svg>
