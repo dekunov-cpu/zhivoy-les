@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ghivoi-les.ru/sitemap.xml
